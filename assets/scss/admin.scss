@@ -1,0 +1,85 @@
+/**
+ * Admin editor styles.
+ *
+ * This file is project-owned and compiles to assets/css/admin.min.css.
+ * It currently mirrors enough front-end styling into the block editor so editor
+ * content looks like the theme. Core admin UI styles belong in assets/scss/core/admin.scss.
+ *
+ * @package ST_WP_Starter
+ */
+
+// Import variables and mixins.
+@import "abstracts/abstracts";
+
+.editor-styles-wrapper {
+
+  /*--------------------------------------------------------------
+  # Generic
+  --------------------------------------------------------------*/
+
+  /* Normalize
+  --------------------------------------------- */
+  @import "generic/normalize";
+
+  /* Box sizing
+  --------------------------------------------- */
+  box-sizing: border-box; // acts as HTML selector
+  @import "generic/box-sizing";
+
+  /*--------------------------------------------------------------
+  # Base
+  --------------------------------------------------------------*/
+
+  /* Typography
+  --------------------------------------------- */
+  // dump from => "base/typography/typography";
+  color: $color__text-main;
+  font-family: $font__main;
+  font-size: 1rem;
+  line-height: $font__line-height-body;
+
+  button,
+  input,
+  select,
+  optgroup,
+  textarea {
+    color: $color__text-main;
+    font-family: $font__main;
+    font-size: 1rem;
+    line-height: $font__line-height-body;
+  }
+
+  @import "base/typography/headings";
+  @import "base/typography/copy";
+
+  /* Elements
+  --------------------------------------------- */
+  // dump from => "base/elements/body";
+  background: $color__background-body; // Fallback for when there is no custom background color defined.
+
+  @import "base/elements/container";
+  @import "base/elements/svg";
+  @import "base/elements/hr";
+  @import "base/elements/lists";
+  @import "base/elements/media";
+  @import "base/elements/tables";
+
+  /* Links
+  --------------------------------------------- */
+  @import "base/elements/links";
+
+  /* Forms
+  --------------------------------------------- */
+  @import "base/elements/buttons";
+  @import "base/elements/fields";
+
+  /*--------------------------------------------------------------
+  # Components
+  --------------------------------------------------------------*/
+  @import "components/components";
+
+  // Force Show animated elements
+  .animate__animated.opacity-0 {
+    opacity: 1!important;
+  }
+}

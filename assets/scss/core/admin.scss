@@ -1,0 +1,103 @@
+/**
+ * Core admin styles.
+ *
+ * This file is owned by reusable /core/ behavior and compiles to
+ * assets/css/core/admin.min.css. Keep project-specific dashboard/editor styles
+ * in admin.scss so core updates can safely replace this file.
+ *
+ * @package ST_WP_Core
+ */
+
+// Page Notice
+// Keep block editor notices above theme/editor content when notices are pinned
+// or dismissible. This is admin UI support, not front-end theme styling.
+.components-editor-notices__dismissible .components-notice,
+.components-editor-notices__pinned .components-notice {
+  z-index: 1;
+}
+
+// Customizer Styles - Admin Section
+// These styles improve the generated Customizer controls from /core/customizer.
+// If a project disables the Customizer UI, these rules may still be harmlessly
+// loaded with the rest of the core admin stylesheet.
+#customize-controls {
+
+  .customize-control {
+
+    // CSS style checkboxes as toggle switches
+    // src: https://codepen.io/chriscoyier/pen/JjozJLv
+    &.customize-control-checkbox {
+
+      // wrapper
+      .customize-inside-control-row {
+        margin-left: 0;
+        display: flex;
+
+        // Hide the native checkbox but keep the label clickable.
+        input {
+          display: none;
+
+          &:checked {
+
+            + label {
+
+              &:before {
+                background-color: #89c12d;
+              }
+
+              &:after {
+                left: 24px;
+              }
+            }
+          }
+        }
+
+        label {
+          position: relative;
+
+          // Reserve space for the generated toggle before the label text.
+          padding-left: calc(48px + 5px);
+
+          &:before,
+          &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            cursor: pointer;
+          }
+
+          &:before {
+            top: 0;
+            left: 0;
+            width: 48px;
+            height: 24px;
+
+            background-color: #dedede;
+            border-radius: 9999em;
+            -webkit-transition: background-color 0.25s ease;
+            transition: background-color 0.25s ease;
+          }
+
+          &:after {
+            top: 0;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+            -webkit-transition: left 0.25s ease;
+            transition: left 0.25s ease;
+          }
+        }
+      }
+    }
+  }
+
+  // CodeMirror Styles
+  .customize-control-code_editor {
+    .CodeMirror-wrap {
+      height: 100%;
+    }
+  }
+}

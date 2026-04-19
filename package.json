@@ -1,0 +1,33 @@
+{
+  "name": "snailtheme/wp-starter",
+  "version": "1.0.0",
+  "description": "Starter Theme for WordPress",
+  "author": "SnailTheme",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "WordPress",
+    "Theme"
+  ],
+  "homepage": "https://github.com/snailtheme/wp-starter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snailtheme/wp-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snailtheme/wp-starter/issues"
+  },
+  "private": true,
+  "devDependencies": {
+    "sass": "^1.75.0",
+    "terser": "^5.39.0",
+    "vite": "^6.0.11"
+  },
+  "scripts": {
+    "dev": "vite --mode development",
+    "build": "vite build --mode production"
+  },
+  "dependencies": {
+    "@splidejs/splide": "^4.1.4",
+    "animate.css": "^4.1.1"
+  }
+}

@@ -1,0 +1,46 @@
+name: PHP Validation
+
+on:
+  push:
+    branches:
+      - main
+      - next
+  pull_request:
+    branches:
+      - main
+      - next
+
+permissions:
+  contents: read
+
+jobs:
+  php:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Lint PHP
+        run: composer lint:php
+
+      - name: Validate WordPress coding standards
+        run: composer lint:wpcs
+
+      - name: Generate POT file
+        run: composer make-pot
+
+      - name: Confirm POT file is committed
+        run: git diff --exit-code -- languages/st-wp-starter.pot

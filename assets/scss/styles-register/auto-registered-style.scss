@@ -1,0 +1,13 @@
+/**
+ * Styles here will be auto-registered
+ * - registered style names are generated with a dot-notation
+ * - you can call this particular style by calling:
+ * - wp_enqueue_style( 'auto-registered-style' )
+ *
+ * How it works:
+ * - Source files live in assets/scss/styles-register/.
+ * - Vite compiles them to assets/css/styles-register/.
+ * - st_wp_core_register_and_enqueue_assets() registers the compiled files.
+ *
+ * @package ST_WP_Starter
+ */
