@@ -37,7 +37,10 @@
     "lint:wpcs": "@php vendor/bin/phpcs",
     "lint:wpcs:fix": "@php vendor/bin/phpcbf",
     "lint:php": "@php vendor/bin/parallel-lint --exclude vendor --exclude node_modules .",
-    "make-pot": "@php vendor/wp-cli/wp-cli/php/boot-fs.php i18n make-pot . languages/st-wp-starter.pot"
+    "make-pot": [
+      "@php vendor/wp-cli/wp-cli/php/boot-fs.php i18n make-pot . languages/st-wp-starter.pot --slug=st-wp-starter --domain=st-wp-starter",
+      "@php core/tools/normalize-pot.php languages/st-wp-starter.pot"
+    ]
   },
   "support": {
     "issues": "https://github.com/snailtheme/wp-starter/issues",
