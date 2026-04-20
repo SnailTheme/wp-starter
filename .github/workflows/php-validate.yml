@@ -39,8 +39,16 @@ jobs:
       - name: Validate WordPress coding standards
         run: composer lint:wpcs
 
+      - name: Preserve committed POT file
+        run: cp languages/st-wp-starter.pot /tmp/st-wp-starter.committed.pot
+
       - name: Generate POT file
         run: composer make-pot
 
-      - name: Confirm POT file is committed
-        run: git diff --exit-code -- languages/st-wp-starter.pot
+      - name: Normalize volatile POT headers for comparison
+        run: |
+          php core/tools/normalize-pot.php /tmp/st-wp-starter.committed.pot --ci
+          php core/tools/normalize-pot.php languages/st-wp-starter.pot --ci
+
+      - name: Confirm POT strings are committed
+        run: diff -u /tmp/st-wp-starter.committed.pot languages/st-wp-starter.pot
