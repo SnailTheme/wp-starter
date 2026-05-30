@@ -61,9 +61,26 @@ class stable, then add elements and modifiers around it:
 - Root: `.slider-section`
 - Nested block: `.slider-section-splide`
 - Element: `.slider-section-splide__title`
-- Modifier: `.slider-section-splide--vertical`
+- Modifier: `.slider-section--vertical`
 
 Block SCSS should follow the same shape with highly nested BEM selectors.
+Put block-level setting modifiers on the root block, then target nested
+elements through that root state:
+
+```scss
+.slider-section {
+
+  &--vertical {
+
+    .slider-section-splide {
+
+      &__track {
+        padding: 0;
+      }
+    }
+  }
+}
+```
 
 Use stable core helpers when useful, especially:
 

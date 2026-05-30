@@ -45,7 +45,7 @@ $items = is_array( $items ) ? $items : array();
 
 $classes .= " {$block_name}-section--{$style}";
 // Keep Splide options on the block markup so every instance can use its own settings.
-$splide_classes = "splide {$block_name}-section-splide {$block_name}-section-splide--{$style} enter-view";
+$splide_classes = "splide {$block_name}-section-splide enter-view";
 $splide_options = array(
 	'type'       => 'loop',
 	'perPage'    => 1,
@@ -58,7 +58,7 @@ $splide_options = array(
 
 if ( 'vertical' === $style ) {
 	$splide_options['direction'] = 'ttb';
-	$splide_options['height']    = '32rem';
+	$splide_options['height']    = '500px';
 }
 
 $splide_options_json = wp_json_encode( $splide_options );

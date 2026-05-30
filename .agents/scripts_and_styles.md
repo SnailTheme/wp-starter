@@ -29,11 +29,12 @@ Use BEM for project CSS classes:
 - Block: `.slider-section`
 - Nested block: `.slider-section-splide`
 - Element: `.slider-section-splide__title`
-- Modifier: `.slider-section-splide--vertical`
+- Modifier: `.slider-section--vertical`
 
 SCSS should stay highly nested around the owning block class. Prefer local BEM
 nesting with `&__element` and `&--modifier` so styles remain readable and easy
-to move with a block.
+to move with a block. Put block-level setting modifiers on the root block and
+target nested elements from that state.
 
 Avoid broad global selectors unless you are intentionally targeting a
 third-party library class, such as a Splide class that must be adjusted for a
