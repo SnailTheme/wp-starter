@@ -7,6 +7,7 @@ Edit source files:
 - `/assets/scss/`
 - `/assets/scripts/`
 - `/blocks/<block-name>/assets/scss/`
+- `/blocks/<block-name>/assets/js/`
 
 Do not hand-edit generated files:
 
@@ -56,6 +57,38 @@ Core-owned asset sources live under:
 - `/assets/scripts/core/`
 
 Avoid changing core-owned assets for project-specific styling.
+
+## Block Assets
+
+Block styles are declared from each block's `block.json`:
+
+- `viewStyle` for front-end block CSS
+- `editorStyle` for Block API v3 iframe/editor CSS
+
+Vite compiles block SCSS from:
+
+```text
+/blocks/<block-name>/assets/scss/
+```
+
+to:
+
+```text
+/blocks/<block-name>/assets/css/
+```
+
+Block scripts are also declared from `block.json`:
+
+- `viewScript` for front-end behavior
+- `editorScript` for editor preview behavior
+
+The current build does not compile block JavaScript. Files in
+`/blocks/<block-name>/assets/js/` are runtime files loaded directly by
+WordPress, so keep them browser-ready and syntax-check them after edits.
+
+Do not enqueue block editor styles with `admin_enqueue_scripts`. Block API v3
+uses an iframe editor canvas, so block editor styles must be loaded through
+`block.json` `editorStyle` or another block-aware API.
 
 ## Auto-Registered And Auto-Enqueued Assets
 
