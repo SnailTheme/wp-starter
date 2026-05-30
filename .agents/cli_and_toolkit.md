@@ -38,15 +38,29 @@ https://github.com/snailtheme/wp-starter-toolkit
 Common commands:
 
 ```bash
-vendor/bin/st-toolkit core:check --theme=.
-vendor/bin/st-toolkit core:update --theme=. --dry-run
-vendor/bin/st-toolkit core:update --theme=. --yes
-vendor/bin/st-toolkit core:rollback --theme=. --yes
-vendor/bin/st-toolkit blocks:list
-vendor/bin/st-toolkit blocks:install slider hero-slider --theme=. --dry-run
-vendor/bin/st-toolkit blocks:install slider hero-slider --theme=. --yes
-vendor/bin/st-toolkit doctor --theme=.
+composer toolkit:doctor
+composer toolkit:core-check
+composer toolkit:core-update:dry-run
+composer toolkit:core-update -- --yes
+composer toolkit:core-rollback -- --yes
+composer toolkit:blocks-list
+composer toolkit:blocks-install:dry-run slider hero-slider
+composer toolkit:blocks-install slider hero-slider -- --yes
 ```
+
+These Composer scripts are project wrappers around the toolkit binary installed
+in `/vendor/bin/`. Prefer them in documentation and day-to-day usage so
+developers do not need to know the vendor binary path.
+
+For less-common toolkit commands, use the generic passthrough script:
+
+```bash
+composer st-toolkit core:check --theme=.
+composer st-toolkit -- blocks:install slider hero-slider --theme=. --dry-run
+```
+
+Use `--` before toolkit arguments when an option name may also be a Composer
+option, such as `--dry-run`.
 
 Toolkit core updates are for package-owned files only.
 

@@ -37,6 +37,15 @@
     "lint:wpcs": "@php vendor/bin/phpcs",
     "lint:wpcs:fix": "@php vendor/bin/phpcbf",
     "lint:php": "@php vendor/bin/parallel-lint --exclude vendor --exclude node_modules .",
+    "st-toolkit": "@php vendor/bin/st-toolkit",
+    "toolkit:doctor": "@php vendor/bin/st-toolkit doctor --theme=.",
+    "toolkit:core-check": "@php vendor/bin/st-toolkit core:check --theme=.",
+    "toolkit:core-update": "@php vendor/bin/st-toolkit core:update --theme=.",
+    "toolkit:core-update:dry-run": "@php vendor/bin/st-toolkit core:update --theme=. --dry-run",
+    "toolkit:core-rollback": "@php vendor/bin/st-toolkit core:rollback --theme=.",
+    "toolkit:blocks-list": "@php vendor/bin/st-toolkit blocks:list",
+    "toolkit:blocks-install": "@php vendor/bin/st-toolkit blocks:install --theme=.",
+    "toolkit:blocks-install:dry-run": "@php vendor/bin/st-toolkit blocks:install --theme=. --dry-run",
     "make-pot": [
       "@php vendor/wp-cli/wp-cli/php/boot-fs.php i18n make-pot . languages/st-wp-starter.pot --slug=st-wp-starter --domain=st-wp-starter",
       "@php core/tools/normalize-pot.php languages/st-wp-starter.pot"
