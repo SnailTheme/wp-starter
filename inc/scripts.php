@@ -3,7 +3,7 @@
  * Theme-specific scripts and styles.
  *
  * This file is part of the generated/whitelabeled theme layer. It owns visual
- * theme assets such as main.css, admin.css, and WooCommerce styling. Reusable
+ * theme assets such as main.css, editor.css, and WooCommerce styling. Reusable
  * asset loader behavior remains in /core/scripts.php.
  *
  * @package ST_WP_Starter
@@ -115,27 +115,45 @@ if ( ! function_exists( 'st_wp_starter_theme_scripts' ) ) {
 }
 add_action( 'st_wp_core_enqueue_scripts', 'st_wp_starter_theme_scripts', 5 );
 
+if ( ! function_exists( 'st_wp_starter_editor_styles' ) ) {
+	/**
+	 * Enqueue theme styles for the WordPress post/page editor canvas.
+	 *
+	 * Block API v3 uses an iframe for the editor canvas. Editor content styles
+	 * must load through block asset APIs, not through `admin_enqueue_scripts`,
+	 * otherwise WordPress warns that the stylesheet was added incorrectly.
+	 *
+	 * @return void
+	 */
+	function st_wp_starter_editor_styles(): void {
+		if ( ! is_admin() ) {
+			return;
+		}
+
+		if ( ! st_wp_starter_asset_exists( '/assets/css/editor.min.css' ) ) {
+			return;
+		}
+
+		wp_enqueue_style(
+			'st-wp-starter-editor',
+			get_template_directory_uri() . '/assets/css/editor.min.css',
+			array(),
+			st_wp_starter_get_asset_version( '/assets/css/editor.min.css' )
+		);
+	}
+}
+add_action( 'enqueue_block_assets', 'st_wp_starter_editor_styles' );
+
 if ( ! function_exists( 'st_wp_starter_admin_scripts' ) ) {
 	/**
-	 * Enqueue theme admin scripts and styles.
+	 * Enqueue project-owned wp-admin behavior.
 	 *
-	 * This is project-owned admin styling/behavior. Core admin behavior, such as
-	 * plugin notices and nav-menu media fields, is handled by core/admin assets.
+	 * Editor canvas styles load from `st_wp_starter_editor_styles()` via
+	 * `enqueue_block_assets`. This callback is only for wp-admin UI scripts.
 	 *
 	 * @return void
 	 */
 	function st_wp_starter_admin_scripts(): void {
-		// admin.scss -> assets/css/admin.min.css via Vite.
-		if ( st_wp_starter_asset_exists( '/assets/css/admin.min.css' ) ) {
-			wp_enqueue_style(
-				'st-wp-starter-admin',
-				get_template_directory_uri() . '/assets/css/admin.min.css',
-				array(),
-				st_wp_starter_get_asset_version( '/assets/css/admin.min.css' ),
-				false
-			);
-		}
-
 		// admin.js is optional and only enqueued when the generated file has code.
 		if ( st_wp_starter_asset_has_content( '/assets/js/admin.min.js' ) ) {
 			wp_enqueue_script(

@@ -268,18 +268,23 @@ if ( apply_filters( 'st_wp_core_enable_asset_registry', true ) ) {
 
 if ( ! function_exists( 'st_wp_core_register_block_editor_libraries' ) ) {
 	/**
-	 * Register third-party libraries for the Block Editor
+	 * Register shared third-party libraries for blocks.
 	 *
-	 * Makes vendor libraries (Splide, GSAP, etc.) available in the admin
-	 * block editor for use by custom Gutenberg blocks.
+	 * Makes vendor libraries (Splide, GSAP, etc.) available as registered
+	 * handles that block.json can reference from `viewStyle`, `editorStyle`,
+	 * `viewScript`, and `editorScript`.
+	 *
+	 * Registering these handles on block editor asset hooks keeps them available
+	 * to the editor parent document and the Block API v3 iframe without touching
+	 * unrelated wp-admin screens.
 	 *
 	 * IMPORTANT:
 	 * - Only REGISTERS assets (doesn't enqueue them)
 	 * - Only processes files in `/plugins/` subdirectory
-	 * - Custom blocks must manually enqueue what they need
+	 * - Custom blocks should reference the registered handles from block.json
 	 *
 	 * WHY only /plugins/?
-	 * - Page-specific styles (pages/archive.css) shouldn't load in editor
+	 * - Page-specific styles (pages/archive.css) should not be available globally
 	 * - Full site layouts would interfere with block editing
 	 * - Only shared libraries should be available to all blocks
 	 *
@@ -294,6 +299,18 @@ if ( ! function_exists( 'st_wp_core_register_block_editor_libraries' ) ) {
 	 * @return void
 	 */
 	function st_wp_core_register_block_editor_libraries(): void {
+		static $registered = false;
+
+		if ( ! is_admin() ) {
+			return;
+		}
+
+		if ( $registered ) {
+			return;
+		}
+
+		$registered = true;
+
 		// Use get_stylesheet_directory() for child themes.
 		$base_dir = get_template_directory();
 
@@ -333,9 +350,10 @@ if ( ! function_exists( 'st_wp_core_register_block_editor_libraries' ) ) {
 		}
 	}
 }
-// Hook into WordPress.
+// Register only for block editor asset loading, not the whole admin dashboard.
 if ( apply_filters( 'st_wp_core_enable_block_editor_libraries', true ) ) {
-	add_action( 'admin_enqueue_scripts', 'st_wp_core_register_block_editor_libraries' );
+	add_action( 'enqueue_block_assets', 'st_wp_core_register_block_editor_libraries', 1 );
+	add_action( 'enqueue_block_editor_assets', 'st_wp_core_register_block_editor_libraries', 1 );
 }
 
 

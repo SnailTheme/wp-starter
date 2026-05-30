@@ -46,7 +46,7 @@ Default source/output pairs:
 
 - `/assets/scss/main.scss` -> `/assets/css/main.min.css`
 - `/assets/scripts/main.js` -> `/assets/js/main.min.js`
-- `/assets/scss/admin.scss` -> `/assets/css/admin.min.css`
+- `/assets/scss/editor.scss` -> `/assets/css/editor.min.css`
 - `/assets/scripts/admin.js` -> `/assets/js/admin.min.js`
 - `/assets/scss/woocommerce.scss` -> `/assets/css/woocommerce.min.css`
 
@@ -75,6 +75,11 @@ Examples:
 - `/assets/css/styles-register/plugins/splidejs/core.min.css` -> `plugins.splidejs.core`
 - `/assets/js/scripts-register/plugins/splidejs/core.min.js` -> `plugins.splidejs.core`
 
+Shared assets under `/plugins/` are registered for the block editor and by the
+front-end asset registry. Custom blocks can reference those handles from
+`block.json` `viewStyle`, `editorStyle`, `viewScript`, or `editorScript`
+without manually enqueueing the shared library.
+
 ## When To Use `/inc/scripts.php`
 
 Use `/inc/scripts.php` when auto-loading is not enough.
@@ -87,3 +92,7 @@ Good uses:
 - replacing or extending theme-owned enqueue callbacks
 
 Do not edit `/core/scripts.php` for project behavior.
+
+Use `admin_enqueue_scripts` only for wp-admin UI behavior/assets. Use
+`enqueue_block_assets` with an `is_admin()` guard for post/page editor canvas
+styles so Block API v3 iframe loading stays compatible with WordPress.
