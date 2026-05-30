@@ -50,7 +50,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "",
+                    "layout": "block",
                     "pagination": 0,
                     "min": 0,
                     "max": 0,
@@ -113,7 +113,7 @@
         },
         {
             "key": "field_6a1ad59463d37",
-            "label": "Settings",
+            "label": "Slider - Settings",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -131,7 +131,7 @@
         },
         {
             "key": "field_6a1ad5a563d38",
-            "label": "Slider - Settings",
+            "label": "Settings",
             "name": "stwp-slider-settings",
             "aria-label": "",
             "type": "group",
@@ -198,5 +198,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780144123
+    "modified": 1780145156
 }

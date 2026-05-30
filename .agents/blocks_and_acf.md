@@ -11,6 +11,16 @@ Blocks live in:
 Each block should keep its PHP, block metadata, and block assets inside its own
 directory.
 
+Block markup should use BEM classes derived from the block slug. Keep the root
+class stable, then add elements and modifiers around it:
+
+- Root: `.slider-section`
+- Nested block: `.slider-section-splide`
+- Element: `.slider-section-splide__title`
+- Modifier: `.slider-section-splide--vertical`
+
+Block SCSS should follow the same shape with highly nested BEM selectors.
+
 ## Naming
 
 The current block namespace is `stwp`.

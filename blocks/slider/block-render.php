@@ -35,11 +35,34 @@ $fields         = get_field( $fields_group );
 $settings       = get_field( $settings_group );
 $fields         = is_array( $fields ) ? $fields : array();
 $settings       = is_array( $settings ) ? $settings : array();
-$style          = $settings[ "{$settings_group}__style" ] ?? 'horizontal';
-$items          = $fields[ "{$fields_group}-items" ] ?? array();
+$style          = sanitize_key( (string) ( $settings[ "{$settings_group}__style" ] ?? 'horizontal' ) );
+if ( ! in_array( $style, array( 'horizontal', 'vertical' ), true ) ) {
+	$style = 'horizontal';
+}
 
-// Extra classes.
-$classes .= ' some-class';
+$items = $fields[ "{$fields_group}-items" ] ?? array();
+$items = is_array( $items ) ? $items : array();
+
+$classes .= " {$block_name}-section--{$style}";
+// Keep Splide options on the block markup so every instance can use its own settings.
+$splide_classes = "splide {$block_name}-section-splide {$block_name}-section-splide--{$style} enter-view";
+$splide_options = array(
+	'type'       => 'loop',
+	'perPage'    => 1,
+	'perMove'    => 1,
+	'focus'      => 'center',
+	'rewind'     => false,
+	'pagination' => false,
+	'arrows'     => true,
+);
+
+if ( 'vertical' === $style ) {
+	$splide_options['direction'] = 'ttb';
+	$splide_options['height']    = '32rem';
+}
+
+$splide_options_json = wp_json_encode( $splide_options );
+$splide_options_json = $splide_options_json ? $splide_options_json : '{}';
 
 // Do something for Editor Preview only.
 if ( $is_preview ) {
@@ -67,9 +90,10 @@ else :
 	?>
 	<section <?php echo wp_kses_post( $wrapper_attributes ); ?>>
 		<div class="container">
-			<div class="<?php echo esc_html( $block_name ); ?>-section-wrapper">
+			<div class="<?php echo esc_attr( $block_name ); ?>-section-wrapper">
 				<div id="splide-<?php echo esc_attr( $block_id ); ?>"
-					class="splide <?php echo esc_html( $block_name ); ?>-section-splide enter-view">
+					class="<?php echo esc_attr( $splide_classes ); ?>"
+					data-splide="<?php echo esc_attr( $splide_options_json ); ?>">
 					<div class="splide__track <?php echo esc_html( $block_name ); ?>-section-splide__track">
 						<ul class="splide__list <?php echo esc_html( $block_name ); ?>-section-splide__list">
 							<?php

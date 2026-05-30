@@ -8,6 +8,31 @@
 
   &-splide {
 
+	&--vertical {
+
+	  .slider-section-splide {
+
+		&__track {
+		  padding : 0 !important;
+		}
+
+		&__slide {
+		  margin-right : 0 !important;
+		}
+
+		&__arrow {
+
+		  &--prev {
+			transform : translateX(-50%) rotate(-90deg);
+		  }
+
+		  &--next {
+			transform : translateX(-50%) rotate(90deg);
+		  }
+		}
+	  }
+	}
+
 	&__track {
 	  padding : 0 25vw !important;
 	}
