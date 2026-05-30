@@ -11,9 +11,25 @@
  * @package ST_WP_Starter
  */
 
+// Derive the block namespace from theme patterns so generated themes can use a custom namespace.
+$block_namespace = '';
+if ( defined( 'ST_WP_CORE_THEME_PATTERNS' ) && is_array( ST_WP_CORE_THEME_PATTERNS ) && ! empty( ST_WP_CORE_THEME_PATTERNS['block_namespace'] ) ) {
+	$block_namespace = (string) ST_WP_CORE_THEME_PATTERNS['block_namespace'];
+}
+
+$registered_block_name = isset( $block['name'] ) ? (string) $block['name'] : '';
+$block_name_parts      = explode( '/', $registered_block_name, 2 );
+
+if ( 2 === count( $block_name_parts ) ) {
+	$block_namespace = $block_namespace ? $block_namespace : $block_name_parts[0];
+	$block_name      = $block_name_parts[1];
+} else {
+	$block_namespace = $block_namespace ? $block_namespace : sanitize_key( get_template() );
+	$block_name      = $registered_block_name;
+}
+
 // Create id attribute allowing for custom "anchor" value.
-$block_name = str_replace( 'stwp/', '', $block['name'] );
-$block_id   = $block_name . '-section-' . $block['id'];
+$block_id = $block_name . '-section-' . $block['id'];
 
 if ( ! empty( $block['anchor'] ) ) {
 	$block_id = $block['anchor'];
@@ -29,8 +45,8 @@ if ( ! empty( $block['align'] ) ) {
 }
 
 // ACF Fields.
-$fields_group   = "stwp-{$block_name}-fields";
-$settings_group = "stwp-{$block_name}-settings";
+$fields_group   = "{$block_namespace}-{$block_name}-fields";
+$settings_group = "{$block_namespace}-{$block_name}-settings";
 $fields         = get_field( $fields_group );
 $settings       = get_field( $settings_group );
 $fields         = is_array( $fields ) ? $fields : array();

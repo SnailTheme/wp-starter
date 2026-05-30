@@ -11,7 +11,7 @@ Blocks live in:
 Each block should keep its PHP, block metadata, and block assets inside its own
 directory.
 
-For the default namespace, the source slider block lives in:
+For the source theme default namespace, the bundled slider block lives in:
 
 ```text
 /blocks/stwp-slider/
@@ -32,7 +32,15 @@ New blocks should use WordPress Block API v3 and ACF Blocks v3:
 }
 ```
 
-The current block namespace is `stwp`.
+The current block namespace is defined by:
+
+```php
+ST_WP_CORE_THEME_PATTERNS['block_namespace']
+```
+
+The source theme default is `stwp`, but generated themes may use a different
+namespace. Do not hardcode `stwp` in reusable block logic when the value can be
+read from theme patterns or from `$block['name']`.
 
 Block category comes from:
 
@@ -96,19 +104,25 @@ st_wp_core_get_block_wrapper_attributes()
 
 ## Render Files
 
-Render files should derive the block base name from `block.json` / `$block`.
-That keeps toolkit-installed block copies reusable when the destination slug
+Render files should derive the block namespace and base name from theme
+patterns and `block.json` / `$block`. That keeps generated themes and
+toolkit-installed block copies reusable when the namespace or destination slug
 changes:
 
 ```php
-$block_name = str_replace( 'stwp/', '', $block['name'] );
+$block_namespace = '';
+if ( defined( 'ST_WP_CORE_THEME_PATTERNS' ) && is_array( ST_WP_CORE_THEME_PATTERNS ) ) {
+	$block_namespace = (string) ( ST_WP_CORE_THEME_PATTERNS['block_namespace'] ?? '' );
+}
+
+$block_name = str_replace( "{$block_namespace}/", '', $block['name'] );
 ```
 
-Build ACF field roots from `$block_name`:
+Build ACF field roots from `$block_namespace` and `$block_name`:
 
 ```php
-$fields_group   = "stwp-{$block_name}-fields";
-$settings_group = "stwp-{$block_name}-settings";
+$fields_group   = "{$block_namespace}-{$block_name}-fields";
+$settings_group = "{$block_namespace}-{$block_name}-settings";
 
 $fields   = get_field( $fields_group );
 $settings = get_field( $settings_group );
@@ -122,10 +136,11 @@ instead of duplicating PHP settings logic in the script.
 
 ## ACF Field Structure
 
-New ACF blocks should use two main field groups:
+New ACF blocks should use two main field groups. Replace `<namespace>` with
+`ST_WP_CORE_THEME_PATTERNS['block_namespace']`:
 
-- `stwp-<block-slug>-fields`
-- `stwp-<block-slug>-settings`
+- `<namespace>-<block-slug>-fields`
+- `<namespace>-<block-slug>-settings`
 
 Use `Fields` for content shown on the front end.
 
@@ -135,15 +150,15 @@ animation, and behavior toggles.
 Simple field names:
 
 ```text
-stwp-<block-slug>-fields__<field_name>
-stwp-<block-slug>-settings__<setting_name>
+<namespace>-<block-slug>-fields__<field_name>
+<namespace>-<block-slug>-settings__<setting_name>
 ```
 
 Repeater names:
 
 ```text
-stwp-<block-slug>-fields-<plural_repeater_name>
-stwp-<block-slug>-fields-<singular_repeater_name>__<field_name>
+<namespace>-<block-slug>-fields-<plural_repeater_name>
+<namespace>-<block-slug>-fields-<singular_repeater_name>__<field_name>
 ```
 
 Avoid loose fields outside the two main groups.

@@ -1,9 +1,3 @@
 .editor-styles-wrapper {
   @import "styles";
-
-  // Splide hides sliders until JavaScript adds `.is-initialized`.
-  // Keep the editor preview visible even if the iframe initializer is delayed.
-  .slider-section-splide {
-    visibility: visible;
-  }
 }
