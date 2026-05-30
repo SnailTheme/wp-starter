@@ -1,9 +1,9 @@
 {
-    "key": "group_stwp_slider",
+    "key": "group_67e65ca74b4b1",
     "title": "Block: Slider",
     "fields": [
         {
-            "key": "field_stwp_slider_fields_tab",
+            "key": "field_6a1ad55063d36",
             "label": "Fields",
             "name": "",
             "aria-label": "",
@@ -21,7 +21,7 @@
             "selected": 0
         },
         {
-            "key": "field_stwp_slider_fields_group",
+            "key": "field_67e65ca857a9c",
             "label": "Slider - Fields",
             "name": "stwp-slider-fields",
             "aria-label": "",
@@ -37,8 +37,8 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_stwp_slider_fields_items",
-                    "label": "Items",
+                    "key": "field_67e65cba57a9d",
+                    "label": "Slider Items",
                     "name": "stwp-slider-fields-items",
                     "aria-label": "",
                     "type": "repeater",
@@ -50,7 +50,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "block",
+                    "layout": "",
                     "pagination": 0,
                     "min": 0,
                     "max": 0,
@@ -59,7 +59,7 @@
                     "rows_per_page": 20,
                     "sub_fields": [
                         {
-                            "key": "field_stwp_slider_fields_item_title",
+                            "key": "field_67e65cd257a9e",
                             "label": "Title",
                             "name": "stwp-slider-fields-item__title",
                             "aria-label": "",
@@ -78,10 +78,10 @@
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "parent_repeater": "field_stwp_slider_fields_items"
+                            "parent_repeater": "field_67e65cba57a9d"
                         },
                         {
-                            "key": "field_stwp_slider_fields_item_image",
+                            "key": "field_67e65ce857a9f",
                             "label": "Image",
                             "name": "stwp-slider-fields-item__image",
                             "aria-label": "",
@@ -94,8 +94,8 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "array",
-                            "library": "all",
+                            "return_format": "",
+                            "library": "",
                             "min_width": "",
                             "min_height": "",
                             "min_size": "",
@@ -105,14 +105,14 @@
                             "mime_types": "",
                             "allow_in_bindings": 0,
                             "preview_size": "medium",
-                            "parent_repeater": "field_stwp_slider_fields_items"
+                            "parent_repeater": "field_67e65cba57a9d"
                         }
                     ]
                 }
             ]
         },
         {
-            "key": "field_stwp_slider_settings_tab",
+            "key": "field_6a1ad59463d37",
             "label": "Settings",
             "name": "",
             "aria-label": "",
@@ -130,7 +130,7 @@
             "selected": 0
         },
         {
-            "key": "field_stwp_slider_settings_group",
+            "key": "field_6a1ad5a563d38",
             "label": "Slider - Settings",
             "name": "stwp-slider-settings",
             "aria-label": "",
@@ -146,7 +146,7 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_stwp_slider_settings_style",
+                    "key": "field_6a1ad5a563d39",
                     "label": "Style Variant",
                     "name": "stwp-slider-settings__style",
                     "aria-label": "",
@@ -170,7 +170,9 @@
                     "allow_in_bindings": 0,
                     "ui": 0,
                     "ajax": 0,
-                    "placeholder": ""
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0
                 }
             ]
         }
@@ -180,7 +182,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "stwp\/slider"
+                "value": "all"
             }
         ]
     ],
@@ -193,5 +195,8 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1776597438
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1780144123
 }
