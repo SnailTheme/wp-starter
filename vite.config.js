@@ -4,18 +4,6 @@ import path from 'path';
 import * as sass from 'sass';
 import {minify} from 'terser'; // Import Terser for JS minification
 
-// Suppress Sass warnings by redirecting stderr
-const originalStderrWrite = process.stderr.write;
-process.stderr.write = function(chunk, encoding, callback) {
-    // Filter out Sass deprecation warnings
-    if (typeof chunk === 'string' &&
-        (chunk.includes('DEPRECATION WARNING') ||
-            chunk.includes('will be removed in Dart Sass'))) {
-        return true;
-    }
-    return originalStderrWrite.apply(process.stderr, arguments);
-};
-
 const themeScssFolder = path.resolve('assets/scss'); // Theme SCSS folder
 const themeCssFolder = path.resolve('assets/css'); // Theme CSS output folder
 const scriptsFolder = path.resolve('assets/scripts'); // JS input folder
@@ -23,6 +11,7 @@ const jsOutputFolder = path.resolve('assets/js'); // JS output folder
 const blocksScssFolders = getBlockScssFolders('blocks'); // Blocks SCSS folders
 
 const isProduction = process.env.NODE_ENV === 'production';
+const sassLogger = isProduction ? sass.Logger.silent : undefined;
 
 /**
  * Function to clear /css/ && /js/ directories before build.
@@ -125,7 +114,8 @@ function compileScssFiles(scssFolder, cssFolder) {
 
         const result = sass.compile(file, {
             style: 'compressed',
-            sourceMap: !isProduction
+            sourceMap: !isProduction,
+            logger: sassLogger
         });
 
         let cssContent = result.css;
