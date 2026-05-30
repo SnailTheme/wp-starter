@@ -3,13 +3,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ST WP Starter 1.0.0\n"
-"Report-Msgid-Bugs-To: https://github.com/SnailTheme/st-wp-starter\n"
+"Report-Msgid-Bugs-To: https://github.com/SnailTheme/wp-starter\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-20T13:26:41+00:00\n"
+"POT-Creation-Date: 2026-05-30T16:13:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: st-wp-starter\n"
@@ -57,11 +57,11 @@ msgstr ""
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: blocks/slider/block-render.php:112
+#: blocks/stwp-slider/block-render.php:136
 msgid "Previous slide"
 msgstr ""
 
-#: blocks/slider/block-render.php:116
+#: blocks/stwp-slider/block-render.php:140
 msgid "Next slide"
 msgstr ""
 
@@ -324,17 +324,17 @@ msgstr ""
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr ""
 
-#: blocks/slider/block.json
+#: blocks/stwp-slider/block.json
 msgctxt "block title"
 msgid "Slider Section"
 msgstr ""
 
-#: blocks/slider/block.json
+#: blocks/stwp-slider/block.json
 msgctxt "block description"
 msgid "ST WP Starter Slider section."
 msgstr ""
 
-#: blocks/slider/block.json
+#: blocks/stwp-slider/block.json
 msgctxt "block keyword"
 msgid "slider, vertical slider, horizontal slider"
 msgstr ""

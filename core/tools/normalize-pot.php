@@ -19,7 +19,7 @@ declare(strict_types=1);
 
 $pot_file       = '';
 $ci_mode        = false;
-$bug_report_url = 'https://github.com/SnailTheme/st-wp-starter';
+$bug_report_url = 'https://github.com/SnailTheme/wp-starter';
 
 foreach ( array_slice( $argv, 1 ) as $argument ) {
 	if ( '--ci' === $argument ) {
@@ -43,7 +43,7 @@ foreach ( array_slice( $argv, 1 ) as $argument ) {
 
 if ( '' === $pot_file || ! is_file( $pot_file ) ) {
 	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- CLI build helper writes to STDERR directly.
-	fwrite( STDERR, "Usage: php core/tools/normalize-pot.php languages/st-wp-starter.pot [--ci] [--bug-report-url=https://github.com/SnailTheme/st-wp-starter]\n" );
+	fwrite( STDERR, "Usage: php core/tools/normalize-pot.php languages/st-wp-starter.pot [--ci] [--bug-report-url=https://github.com/SnailTheme/wp-starter]\n" );
 	exit( 1 );
 }
 

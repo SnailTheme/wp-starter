@@ -182,7 +182,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "all"
+                "value": "stwp\/slider"
             }
         ]
     ],

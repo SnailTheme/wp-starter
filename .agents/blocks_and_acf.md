@@ -5,11 +5,17 @@
 Blocks live in:
 
 ```text
-/blocks/<block-name>/
+/blocks/<block-namespace>-<block-name>/
 ```
 
 Each block should keep its PHP, block metadata, and block assets inside its own
 directory.
+
+For the default namespace, the source slider block lives in:
+
+```text
+/blocks/stwp-slider/
+```
 
 ## Block Metadata
 
@@ -141,6 +147,13 @@ stwp-<block-slug>-fields-<singular_repeater_name>__<field_name>
 ```
 
 Avoid loose fields outside the two main groups.
+
+When blocks are installed through the toolkit, package source ACF JSON can use
+readable symbolic keys such as `group_stwp_slider` and
+`field_stwp_slider_fields_group`. The toolkit rewrites those to deterministic
+ACF-style keys for the installed destination block and names the local JSON file
+after the generated group key. This avoids key conflicts while keeping repeated
+installs of the same destination block stable.
 
 ## Block Styles
 
