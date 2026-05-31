@@ -39,6 +39,7 @@
     "lint:php": "@php vendor/bin/parallel-lint --exclude vendor --exclude node_modules .",
     "st-toolkit": "@php vendor/bin/st-toolkit",
     "toolkit:init": "@php vendor/bin/st-toolkit init --theme=.",
+    "toolkit:docs-update": "@php vendor/bin/st-toolkit docs:update --theme=.",
     "toolkit:doctor": "@php vendor/bin/st-toolkit doctor --theme=.",
     "toolkit:core-check": "@php vendor/bin/st-toolkit core:check --theme=.",
     "toolkit:core-update": "@php vendor/bin/st-toolkit core:update --theme=.",
