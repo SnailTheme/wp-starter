@@ -57,6 +57,9 @@
     "source": "https://github.com/snailtheme/wp-starter"
   },
   "config": {
+    "platform": {
+      "php": "8.2.0"
+    },
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
