@@ -661,19 +661,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnailTheme/wp-starter-toolkit.git",
-                "reference": "9f5c6c466a701c63b97f355dcd5abcad99822803"
+                "reference": "7ffa8fd501ea75ec0ed55e9e97e6c2985f6857f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/9f5c6c466a701c63b97f355dcd5abcad99822803",
-                "reference": "9f5c6c466a701c63b97f355dcd5abcad99822803",
+                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/7ffa8fd501ea75ec0ed55e9e97e6c2985f6857f9",
+                "reference": "7ffa8fd501ea75ec0ed55e9e97e6c2985f6857f9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
                 "symfony/console": "^6.4 || ^7.0",
                 "symfony/filesystem": "^6.4 || ^7.0",
-                "symfony/finder": "^6.4 || ^7.0"
+                "symfony/finder": "^6.4 || ^7.0",
+                "symfony/process": "^6.4 || ^7.0"
             },
             "default-branch": true,
             "bin": [
@@ -694,7 +695,7 @@
                 "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/next",
                 "issues": "https://github.com/SnailTheme/wp-starter-toolkit/issues"
             },
-            "time": "2026-05-31T12:22:45+00:00"
+            "time": "2026-05-31T13:13:30+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -1416,6 +1417,71 @@
                 }
             ],
             "time": "2026-05-26T12:51:13+00:00"
+        },
+        {
+            "name": "symfony/process",
+            "version": "v7.4.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/process.git",
+                "reference": "f5804be144caceb570f6747519999636b664f24c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/f5804be144caceb570f6747519999636b664f24c",
+                "reference": "f5804be144caceb570f6747519999636b664f24c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Process\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Executes commands in sub-processes",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/process/tree/v7.4.13"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2026-05-23T16:05:06+00:00"
         },
         {
             "name": "symfony/service-contracts",
