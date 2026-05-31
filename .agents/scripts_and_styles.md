@@ -1,3 +1,4 @@
+<!-- st-toolkit-agent-doc-version: 1.0.0 -->
 # Scripts And Styles
 
 ## Source And Build Paths

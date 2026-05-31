@@ -1,3 +1,4 @@
+<!-- st-toolkit-agent-doc-version: 1.0.0 -->
 # Template Tags And Helpers
 
 ## Template Tags

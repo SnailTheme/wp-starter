@@ -41,20 +41,18 @@ Installation
 ### Quick Start
 
 To start using all the tools that come with `st-wp-starter`, install the
-necessary Node.js and Composer dependencies:
+necessary Node.js and Composer dependencies, then initialize the local
+development notes:
 
 ```sh
 $ composer install
 $ npm install
+$ composer st-toolkit init
 ```
 
-### Documentation
-
-For feature documentation, see:
-
-https://wp-starter.snailtheme.com/features/
-
-For maintainer and coding-agent notes inside this theme, see `AGENTS.md`.
+`composer st-toolkit init` installs `AGENTS.md` and `.agents/` with local
+theme development notes. Those files are ignored by Git by default so they can
+guide development without being committed or deployed.
 
 Now you're ready to go! The next step is easy to say, but harder to do: make an awesome WordPress theme. :)
 

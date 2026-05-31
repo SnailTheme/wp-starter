@@ -1,3 +1,4 @@
+<!-- st-toolkit-agent-doc-version: 1.0.0 -->
 # Blocks And ACF
 
 ## Block Location
@@ -11,10 +12,10 @@ Blocks live in:
 Each block should keep its PHP, block metadata, and block assets inside its own
 directory.
 
-For the source theme default namespace, the bundled slider block lives in:
+A block using namespace `<namespace>` and slug `slider` lives in:
 
 ```text
-/blocks/stwp-slider/
+/blocks/<namespace>-slider/
 ```
 
 ## Block Metadata
@@ -38,9 +39,9 @@ The current block namespace is defined by:
 ST_WP_CORE_THEME_PATTERNS['block_namespace']
 ```
 
-The source theme default is `stwp`, but generated themes may use a different
-namespace. Do not hardcode `stwp` in reusable block logic when the value can be
-read from theme patterns or from `$block['name']`.
+Generated themes may use different block namespaces. Do not hardcode a
+namespace in reusable block logic when the value can be read from theme patterns
+or from `$block['name']`.
 
 Block category comes from:
 
@@ -164,11 +165,11 @@ Repeater names:
 Avoid loose fields outside the two main groups.
 
 When blocks are installed through the toolkit, package source ACF JSON can use
-readable symbolic keys such as `group_stwp_slider` and
-`field_stwp_slider_fields_group`. The toolkit rewrites those to deterministic
-ACF-style keys for the installed destination block and names the local JSON file
-after the generated group key. This avoids key conflicts while keeping repeated
-installs of the same destination block stable.
+readable symbolic keys such as `group_<namespace>_<block_slug>` and
+`field_<namespace>_<block_slug>_fields_group`. The toolkit rewrites those to
+deterministic ACF-style keys for the installed destination block and names the
+local JSON file after the generated group key. This avoids key conflicts while
+keeping repeated installs of the same destination block stable.
 
 ## Block Styles
 

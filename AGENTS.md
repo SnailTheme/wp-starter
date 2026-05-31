@@ -1,3 +1,4 @@
+<!-- st-toolkit-agent-doc-version: 1.0.0 -->
 # Theme Agent Guide
 
 This file is the entrypoint for maintainers and coding agents working inside
@@ -27,3 +28,9 @@ remain possible.
 - Prefer `/inc/` over `/core/` for project behavior.
 - Avoid changing generated assets directly; update source assets instead.
 - Keep documentation and examples generator-safe.
+
+## Local-Only Notes
+
+These files are installed by `composer st-toolkit init` and are ignored by Git
+by default. If you want to customize one and prevent toolkit updates for that
+file, remove the version marker from its first line.

@@ -1,3 +1,4 @@
+<!-- st-toolkit-agent-doc-version: 1.0.0 -->
 # Core And Overrides
 
 ## Directory Roles

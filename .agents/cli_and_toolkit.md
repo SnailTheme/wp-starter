@@ -1,3 +1,4 @@
+<!-- st-toolkit-agent-doc-version: 1.0.0 -->
 # CLI And Toolkit
 
 ## Composer Commands
@@ -34,6 +35,12 @@ The toolkit is installed as a Composer development dependency.
 Public repository:
 
 https://github.com/snailtheme/wp-starter-toolkit
+
+Install or refresh local development notes:
+
+```bash
+composer st-toolkit init
+```
 
 Common commands:
 
