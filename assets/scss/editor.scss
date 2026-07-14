@@ -73,7 +73,12 @@
   /*--------------------------------------------------------------
   # Components
   --------------------------------------------------------------*/
-  @include meta.load-css("components/components");
+
+  /* Captions used by classic content and migrated media. */
+  @include meta.load-css("components/media/captions");
+
+  /* Galleries used by classic content and migrated galleries. */
+  @include meta.load-css("components/media/galleries");
 
   // Force Show animated elements
   .animate__animated.opacity-0 {
