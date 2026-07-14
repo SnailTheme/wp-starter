@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "206c12d979a68f0fef2d94e03cbdd6dc",
+    "content-hash": "4b1dd3ee771227ac52c0d617dc40be5b",
     "packages": [],
     "packages-dev": [
         {
@@ -657,16 +657,16 @@
         },
         {
             "name": "snailtheme/wp-starter-toolkit",
-            "version": "dev-next",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnailTheme/wp-starter-toolkit.git",
-                "reference": "7ffa8fd501ea75ec0ed55e9e97e6c2985f6857f9"
+                "reference": "995fadd3fa775ef8507ac792a6b492cf5e084653"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/7ffa8fd501ea75ec0ed55e9e97e6c2985f6857f9",
-                "reference": "7ffa8fd501ea75ec0ed55e9e97e6c2985f6857f9",
+                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/995fadd3fa775ef8507ac792a6b492cf5e084653",
+                "reference": "995fadd3fa775ef8507ac792a6b492cf5e084653",
                 "shasum": ""
             },
             "require": {
@@ -676,7 +676,6 @@
                 "symfony/finder": "^6.4 || ^7.0",
                 "symfony/process": "^6.4 || ^7.0"
             },
-            "default-branch": true,
             "bin": [
                 "bin/st-toolkit"
             ],
@@ -692,10 +691,10 @@
             "description": "Developer toolkit for updating ST WP Starter core files and installing curated WordPress starter blocks.",
             "homepage": "https://www.snailtheme.com/",
             "support": {
-                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/next",
+                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.0.0",
                 "issues": "https://github.com/SnailTheme/wp-starter-toolkit/issues"
             },
-            "time": "2026-05-31T13:13:30+00:00"
+            "time": "2026-05-31T16:35:08+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -2123,7 +2122,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "snailtheme/wp-starter-toolkit": 20,
         "wp-coding-standards/wpcs": 20
     },
     "prefer-stable": false,
