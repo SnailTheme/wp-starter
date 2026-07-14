@@ -1,6 +1,9 @@
+@use "sass:meta";
+@use "../abstracts" as theme;
+
 .site {
 	display: grid;
-	grid-template-columns: ($size__site-sidebar) auto;
+	grid-template-columns: (theme.$size__site-sidebar) auto;
 	grid-template-areas:
 		"header header"
 		"sidebar main"
@@ -24,4 +27,4 @@
 	grid-area: footer;
 }
 
-@import "no-sidebar";
+@include meta.load-css("no-sidebar");

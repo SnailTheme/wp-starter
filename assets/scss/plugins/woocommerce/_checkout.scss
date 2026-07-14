@@ -1,10 +1,12 @@
+@use "../../abstracts" as theme;
+
 @media screen and (min-width: 768px) {
 
 	.col2-set {
 
 		.form-row-first {
 			float: left;
-			margin-right: $columns__margin;
+			margin-right: theme.$columns__margin;
 		}
 
 		.form-row-last {
@@ -15,7 +17,7 @@
 		.form-row-first,
 		.form-row-last {
 
-			@include column-width(2);
+			@include theme.column-width(2);
 		}
 	}
 }

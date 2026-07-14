@@ -1,3 +1,5 @@
+@use "../abstracts" as theme;
+
 .alignleft {
 
 	/*rtl:ignore*/
@@ -21,7 +23,7 @@
 .aligncenter {
 	clear: both;
 
-	@include center-block;
+	@include theme.center-block;
 
 	margin-bottom: 1.5em;
 }

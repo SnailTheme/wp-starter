@@ -8,10 +8,17 @@
  * @package ST_WP_Starter
  */
 
-// Import variables and mixins.
-@import "abstracts/abstracts";
+@use "sass:meta";
+@use "abstracts" as theme;
+@use "abstracts/variables/root";
 
 .editor-styles-wrapper {
+	box-sizing: border-box; // Acts as the editor iframe's HTML selector.
+	color: theme.$color__text-main;
+	font-family: theme.$font__main;
+	font-size: 1rem;
+	line-height: theme.$font__line-height-body;
+	background: theme.$color__background-body; // Fallback when no custom background color is defined.
 
   /*--------------------------------------------------------------
   # Generic
@@ -19,12 +26,11 @@
 
   /* Normalize
   --------------------------------------------- */
-  @import "generic/normalize";
+  @include meta.load-css("generic/normalize");
 
   /* Box sizing
   --------------------------------------------- */
-  box-sizing: border-box; // acts as HTML selector
-  @import "generic/box-sizing";
+  @include meta.load-css("generic/box-sizing");
 
   /*--------------------------------------------------------------
   # Base
@@ -32,51 +38,42 @@
 
   /* Typography
   --------------------------------------------- */
-  // dump from => "base/typography/typography";
-  color: $color__text-main;
-  font-family: $font__main;
-  font-size: 1rem;
-  line-height: $font__line-height-body;
-
   button,
   input,
   select,
   optgroup,
   textarea {
-    color: $color__text-main;
-    font-family: $font__main;
+    color: theme.$color__text-main;
+    font-family: theme.$font__main;
     font-size: 1rem;
-    line-height: $font__line-height-body;
+    line-height: theme.$font__line-height-body;
   }
 
-  @import "base/typography/headings";
-  @import "base/typography/copy";
+  @include meta.load-css("base/typography/headings");
+  @include meta.load-css("base/typography/copy");
 
   /* Elements
   --------------------------------------------- */
-  // dump from => "base/elements/body";
-  background: $color__background-body; // Fallback for when there is no custom background color defined.
-
-  @import "base/elements/container";
-  @import "base/elements/svg";
-  @import "base/elements/hr";
-  @import "base/elements/lists";
-  @import "base/elements/media";
-  @import "base/elements/tables";
+  @include meta.load-css("base/elements/container");
+  @include meta.load-css("base/elements/svg");
+  @include meta.load-css("base/elements/hr");
+  @include meta.load-css("base/elements/lists");
+  @include meta.load-css("base/elements/media");
+  @include meta.load-css("base/elements/tables");
 
   /* Links
   --------------------------------------------- */
-  @import "base/elements/links";
+  @include meta.load-css("base/elements/links");
 
   /* Forms
   --------------------------------------------- */
-  @import "base/elements/buttons";
-  @import "base/elements/fields";
+  @include meta.load-css("base/elements/buttons");
+  @include meta.load-css("base/elements/fields");
 
   /*--------------------------------------------------------------
   # Components
   --------------------------------------------------------------*/
-  @import "components/components";
+  @include meta.load-css("components/components");
 
   // Force Show animated elements
   .animate__animated.opacity-0 {

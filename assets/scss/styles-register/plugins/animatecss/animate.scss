@@ -1,150 +1,153 @@
-@charset "UTF-8";
 /**
- * Import AnimateCSS Styles
- * - You can modify what you import per-project
- * - You can activate animations site-wide from Theme Options
- * - Or enqueue per template by calling:
- * - wp_enqueue_style( 'plugins.animatecss.animate' );
+ * Build a project-selected subset of AnimateCSS.
  *
- * Load & Compile npm plugins yourself so they are available
- * without the need to install NPM on the live server.
+ * Comment out any animation module the project does not use. The partials are
+ * the prefixed AnimateCSS distribution split into individual modules because
+ * the npm package exposes its production-ready prefixed CSS only as one file.
+ *
+ * Activate animations site-wide from Theme Options, or enqueue the registered
+ * stylesheet for a specific template:
+ * `wp_enqueue_style( 'plugins.animatecss.animate' );`
+ *
+ * The production CSS is committed with the theme, so npm is not required on
+ * the live server.
  *
  * @package ST_WP_Starter
  */
 
-@import 'source/_vars';
-@import 'source/_base';
+@use "source/vars";
+@use "source/base";
 
-/* Attention seekers  */
-@import 'source/attention_seekers/bounce';
-@import 'source/attention_seekers/flash';
-@import 'source/attention_seekers/pulse';
-@import 'source/attention_seekers/rubberBand';
-@import 'source/attention_seekers/shakeX';
-@import 'source/attention_seekers/shakeY';
-@import 'source/attention_seekers/headShake';
-@import 'source/attention_seekers/swing';
-@import 'source/attention_seekers/tada';
-@import 'source/attention_seekers/wobble';
-@import 'source/attention_seekers/jello';
-@import 'source/attention_seekers/heartBeat';
+/* Attention seekers. */
+@use "source/attention_seekers/bounce";
+@use "source/attention_seekers/flash";
+@use "source/attention_seekers/pulse";
+@use "source/attention_seekers/rubberBand";
+@use "source/attention_seekers/shakeX";
+@use "source/attention_seekers/shakeY";
+@use "source/attention_seekers/headShake";
+@use "source/attention_seekers/swing";
+@use "source/attention_seekers/tada";
+@use "source/attention_seekers/wobble";
+@use "source/attention_seekers/jello";
+@use "source/attention_seekers/heartBeat";
 
-/* Back entrances */
-@import 'source/back_entrances/backInDown';
-@import 'source/back_entrances/backInLeft';
-@import 'source/back_entrances/backInRight';
-@import 'source/back_entrances/backInUp';
+/* Back entrances. */
+@use "source/back_entrances/backInDown";
+@use "source/back_entrances/backInLeft";
+@use "source/back_entrances/backInRight";
+@use "source/back_entrances/backInUp";
 
-/* Back exits */
-@import 'source/back_exits/backOutDown';
-@import 'source/back_exits/backOutLeft';
-@import 'source/back_exits/backOutRight';
-@import 'source/back_exits/backOutUp';
+/* Back exits. */
+@use "source/back_exits/backOutDown";
+@use "source/back_exits/backOutLeft";
+@use "source/back_exits/backOutRight";
+@use "source/back_exits/backOutUp";
 
-/* Bouncing entrances  */
-@import 'source/bouncing_entrances/bounceIn';
-@import 'source/bouncing_entrances/bounceInDown';
-@import 'source/bouncing_entrances/bounceInLeft';
-@import 'source/bouncing_entrances/bounceInRight';
-@import 'source/bouncing_entrances/bounceInUp';
+/* Bouncing entrances. */
+@use "source/bouncing_entrances/bounceIn";
+@use "source/bouncing_entrances/bounceInDown";
+@use "source/bouncing_entrances/bounceInLeft";
+@use "source/bouncing_entrances/bounceInRight";
+@use "source/bouncing_entrances/bounceInUp";
 
-/* Bouncing exits  */
-@import 'source/bouncing_exits/bounceOut';
-@import 'source/bouncing_exits/bounceOutDown';
-@import 'source/bouncing_exits/bounceOutLeft';
-@import 'source/bouncing_exits/bounceOutRight';
-@import 'source/bouncing_exits/bounceOutUp';
+/* Bouncing exits. */
+@use "source/bouncing_exits/bounceOut";
+@use "source/bouncing_exits/bounceOutDown";
+@use "source/bouncing_exits/bounceOutLeft";
+@use "source/bouncing_exits/bounceOutRight";
+@use "source/bouncing_exits/bounceOutUp";
 
-/* Fading entrances  */
-@import 'source/fading_entrances/fadeIn';
-@import 'source/fading_entrances/fadeInDown';
-@import 'source/fading_entrances/fadeInDownBig';
-@import 'source/fading_entrances/fadeInLeft';
-@import 'source/fading_entrances/fadeInLeftBig';
-@import 'source/fading_entrances/fadeInRight';
-@import 'source/fading_entrances/fadeInRightBig';
-@import 'source/fading_entrances/fadeInUp';
-@import 'source/fading_entrances/fadeInUpBig';
-@import 'source/fading_entrances/fadeInTopLeft';
-@import 'source/fading_entrances/fadeInTopRight';
-@import 'source/fading_entrances/fadeInBottomLeft';
-@import 'source/fading_entrances/fadeInBottomRight';
+/* Fading entrances. */
+@use "source/fading_entrances/fadeIn";
+@use "source/fading_entrances/fadeInDown";
+@use "source/fading_entrances/fadeInDownBig";
+@use "source/fading_entrances/fadeInLeft";
+@use "source/fading_entrances/fadeInLeftBig";
+@use "source/fading_entrances/fadeInRight";
+@use "source/fading_entrances/fadeInRightBig";
+@use "source/fading_entrances/fadeInUp";
+@use "source/fading_entrances/fadeInUpBig";
+@use "source/fading_entrances/fadeInTopLeft";
+@use "source/fading_entrances/fadeInTopRight";
+@use "source/fading_entrances/fadeInBottomLeft";
+@use "source/fading_entrances/fadeInBottomRight";
 
-/* Fading exits */
-@import 'source/fading_exits/fadeOut';
-@import 'source/fading_exits/fadeOutDown';
-@import 'source/fading_exits/fadeOutDownBig';
-@import 'source/fading_exits/fadeOutLeft';
-@import 'source/fading_exits/fadeOutLeftBig';
-@import 'source/fading_exits/fadeOutRight';
-@import 'source/fading_exits/fadeOutRightBig';
-@import 'source/fading_exits/fadeOutUp';
-@import 'source/fading_exits/fadeOutUpBig';
-@import 'source/fading_exits/fadeOutTopLeft';
-@import 'source/fading_exits/fadeOutTopRight';
-@import 'source/fading_exits/fadeOutBottomRight';
-@import 'source/fading_exits/fadeOutBottomLeft';
+/* Fading exits. */
+@use "source/fading_exits/fadeOut";
+@use "source/fading_exits/fadeOutDown";
+@use "source/fading_exits/fadeOutDownBig";
+@use "source/fading_exits/fadeOutLeft";
+@use "source/fading_exits/fadeOutLeftBig";
+@use "source/fading_exits/fadeOutRight";
+@use "source/fading_exits/fadeOutRightBig";
+@use "source/fading_exits/fadeOutUp";
+@use "source/fading_exits/fadeOutUpBig";
+@use "source/fading_exits/fadeOutTopLeft";
+@use "source/fading_exits/fadeOutTopRight";
+@use "source/fading_exits/fadeOutBottomRight";
+@use "source/fading_exits/fadeOutBottomLeft";
 
-/* Flippers */
-@import 'source/flippers/flip';
-@import 'source/flippers/flipInX';
-@import 'source/flippers/flipInY';
-@import 'source/flippers/flipOutX';
-@import 'source/flippers/flipOutY';
+/* Flippers. */
+@use "source/flippers/flip";
+@use "source/flippers/flipInX";
+@use "source/flippers/flipInY";
+@use "source/flippers/flipOutX";
+@use "source/flippers/flipOutY";
 
-/* Lightspeed */
-@import 'source/lightspeed/lightSpeedInRight';
-@import 'source/lightspeed/lightSpeedInLeft';
-@import 'source/lightspeed/lightSpeedOutRight';
-@import 'source/lightspeed/lightSpeedOutLeft';
+/* Lightspeed. */
+@use "source/lightspeed/lightSpeedInRight";
+@use "source/lightspeed/lightSpeedInLeft";
+@use "source/lightspeed/lightSpeedOutRight";
+@use "source/lightspeed/lightSpeedOutLeft";
 
-/* Rotating entrances */
-@import 'source/rotating_entrances/rotateIn';
-@import 'source/rotating_entrances/rotateInDownLeft';
-@import 'source/rotating_entrances/rotateInDownRight';
-@import 'source/rotating_entrances/rotateInUpLeft';
-@import 'source/rotating_entrances/rotateInUpRight';
+/* Rotating entrances. */
+@use "source/rotating_entrances/rotateIn";
+@use "source/rotating_entrances/rotateInDownLeft";
+@use "source/rotating_entrances/rotateInDownRight";
+@use "source/rotating_entrances/rotateInUpLeft";
+@use "source/rotating_entrances/rotateInUpRight";
 
-/* Rotating exits */
-@import 'source/rotating_exits/rotateOut';
-@import 'source/rotating_exits/rotateOutDownLeft';
-@import 'source/rotating_exits/rotateOutDownRight';
-@import 'source/rotating_exits/rotateOutUpLeft';
-@import 'source/rotating_exits/rotateOutUpRight';
+/* Rotating exits. */
+@use "source/rotating_exits/rotateOut";
+@use "source/rotating_exits/rotateOutDownLeft";
+@use "source/rotating_exits/rotateOutDownRight";
+@use "source/rotating_exits/rotateOutUpLeft";
+@use "source/rotating_exits/rotateOutUpRight";
 
-/* Specials */
-@import 'source/specials/hinge';
-@import 'source/specials/jackInTheBox';
-@import 'source/specials/rollIn';
-@import 'source/specials/rollOut';
+/* Specials. */
+@use "source/specials/hinge";
+@use "source/specials/jackInTheBox";
+@use "source/specials/rollIn";
+@use "source/specials/rollOut";
 
-/* Zooming entrances */
-@import 'source/zooming_entrances/zoomIn';
-@import 'source/zooming_entrances/zoomInDown';
-@import 'source/zooming_entrances/zoomInLeft';
-@import 'source/zooming_entrances/zoomInRight';
-@import 'source/zooming_entrances/zoomInUp';
+/* Zooming entrances. */
+@use "source/zooming_entrances/zoomIn";
+@use "source/zooming_entrances/zoomInDown";
+@use "source/zooming_entrances/zoomInLeft";
+@use "source/zooming_entrances/zoomInRight";
+@use "source/zooming_entrances/zoomInUp";
 
-/* Zooming exits */
-@import 'source/zooming_exits/zoomOut';
-@import 'source/zooming_exits/zoomOutDown';
-@import 'source/zooming_exits/zoomOutLeft';
-@import 'source/zooming_exits/zoomOutRight';
-@import 'source/zooming_exits/zoomOutUp';
+/* Zooming exits. */
+@use "source/zooming_exits/zoomOut";
+@use "source/zooming_exits/zoomOutDown";
+@use "source/zooming_exits/zoomOutLeft";
+@use "source/zooming_exits/zoomOutRight";
+@use "source/zooming_exits/zoomOutUp";
 
-/* Sliding entrances */
-@import 'source/sliding_entrances/slideInDown';
-@import 'source/sliding_entrances/slideInLeft';
-@import 'source/sliding_entrances/slideInRight';
-@import 'source/sliding_entrances/slideInUp';
+/* Sliding entrances. */
+@use "source/sliding_entrances/slideInDown";
+@use "source/sliding_entrances/slideInLeft";
+@use "source/sliding_entrances/slideInRight";
+@use "source/sliding_entrances/slideInUp";
 
-/* Sliding exits */
-@import 'source/sliding_exits/slideOutDown';
-@import 'source/sliding_exits/slideOutLeft';
-@import 'source/sliding_exits/slideOutRight';
-@import 'source/sliding_exits/slideOutUp';
+/* Sliding exits. */
+@use "source/sliding_exits/slideOutDown";
+@use "source/sliding_exits/slideOutLeft";
+@use "source/sliding_exits/slideOutRight";
+@use "source/sliding_exits/slideOutUp";
 
-// not required for zoom animation
+// Keep elements hidden until the theme's animation runtime reveals them.
 .opacity-0 {
-  opacity:0 !important;
+	opacity: 0 !important;
 }
