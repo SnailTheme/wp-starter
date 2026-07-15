@@ -52,6 +52,8 @@
         "assets/scss/plugins/woocommerce/_single-product.scss": "f93336e1726308ab90760f63daf387fed40b305a40e40b56f76933e2ecc86759",
         "assets/scss/plugins/woocommerce/_tables.scss": "a1186580e16eea61e1d64d70f7dd2b6c1b6f6a8a4374068d62ba7e7187ffab5f",
         "assets/scss/plugins/woocommerce/_widgets.scss": "7f929404656feac524e7a1a29b557262c2c69c5c4e25bd6db47ba51d024b0d86",
+        "assets/scss/styles-enqueue/auto-enqueued-style.scss": "ad1b25dd5a14372b88450af9f38d2a13eb381f07830928df572bb04eae849b35",
+        "assets/scss/styles-register/auto-registered-style.scss": "ffdc72ce52c3f187f4783963ba3d5cd66671635553e5ab8b30108430cf7efe17",
         "assets/scss/utilities/_accessibility.scss": "122f8f9001b7d8e6fc029a2b1a4a898fba5e3790e15553ac9dc22b0e97c1eaa7",
         "assets/scss/utilities/_alignments.scss": "bcf040c801877598f1d16e207669acae49d6e8775f50acac6dda5cb2f9a0265c",
         "assets/scss/woocommerce.scss": "cf976b539df1174cf9c4ba3c07541fe26cac45befb5639fedd2a9a3b98d2980c"
