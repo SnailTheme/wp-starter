@@ -661,12 +661,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnailTheme/wp-starter-toolkit.git",
-                "reference": "6f5f900461ead0fbce7350b3e8158434cc6f4492"
+                "reference": "e0b3730e595faf06f1d27953a0c3c37da5961a60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/6f5f900461ead0fbce7350b3e8158434cc6f4492",
-                "reference": "6f5f900461ead0fbce7350b3e8158434cc6f4492",
+                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/e0b3730e595faf06f1d27953a0c3c37da5961a60",
+                "reference": "e0b3730e595faf06f1d27953a0c3c37da5961a60",
                 "shasum": ""
             },
             "require": {
@@ -699,7 +699,7 @@
                 "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/next",
                 "issues": "https://github.com/SnailTheme/wp-starter-toolkit/issues"
             },
-            "time": "2026-07-15T12:18:11+00:00"
+            "time": "2026-07-15T16:19:32+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",

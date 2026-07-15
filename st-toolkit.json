@@ -12,6 +12,8 @@
         "assets/scss/generic/_box-sizing.scss": "aacb213114be32f124c9f449ab95d1f590174c9ddf7d7d0d258295132f79193e",
         "assets/scss/generic/_normalize.scss": "7006dbfba27563688e9064bdbeb301dfa7a05a069a2bf946558996b4b7735fce",
         "assets/scss/main.scss": "48ec1e7136889046fa625af55db9b15cd720ed9f97b314bf3fdace3d3ccadf12",
+        "assets/scss/styles-enqueue/auto-enqueued-style.scss": "ad1b25dd5a14372b88450af9f38d2a13eb381f07830928df572bb04eae849b35",
+        "assets/scss/styles-register/auto-registered-style.scss": "ffdc72ce52c3f187f4783963ba3d5cd66671635553e5ab8b30108430cf7efe17",
         "assets/scss/utilities/_accessibility.scss": "50a1d982e4801cf2d72c633ef41f1d5f06602a05ee8a7e4cd01b8996c239a589",
         "assets/scss/utilities/_alignments.scss": "66e90f05f4bf7beb5d7518df51ccecfd3a62e3626a33511a308f3a8171eafc1e"
     }
