@@ -7,7 +7,7 @@
     "vite_plugins": [],
     "files": {
         "assets/scss/_st-toolkit-profile.scss": "5632d5bfa3425ea9e88f1883420c9329b5ce030a6174324ea7637fa93611542d",
-        "assets/scss/editor.scss": "4fe6051bdaa153298ea62d0e3ff0f7b68eb2a53dab161e79f5dd3b68a249ef79",
+        "assets/scss/editor.scss": "5257e53a75ed4a95682104fa450423c4ee991aa83186561be22c853cf7422737",
         "assets/scss/foundation/_media.scss": "50c9facdb3c87b47db99c5e5acf98f26200b32d6bd33383f371c74b3077ab23a",
         "assets/scss/generic/_box-sizing.scss": "aacb213114be32f124c9f449ab95d1f590174c9ddf7d7d0d258295132f79193e",
         "assets/scss/generic/_normalize.scss": "7006dbfba27563688e9064bdbeb301dfa7a05a069a2bf946558996b4b7735fce",
