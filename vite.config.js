@@ -144,6 +144,18 @@ function getNativeCssEntries(profileState) {
 
     for (const relativeFile of profileState.css_entries ?? []) {
         const absoluteFile = path.resolve(relativeFile);
+        const relativeToOutput = path.relative(themeCssFolder, absoluteFile);
+        const isInsideOutput = relativeToOutput === ''
+            || (!relativeToOutput.startsWith(`..${path.sep}`)
+                && relativeToOutput !== '..'
+                && !path.isAbsolute(relativeToOutput));
+
+        if (isInsideOutput) {
+            throw new Error(
+                `Configured CSS entry must be outside generated assets/css: ${relativeFile}. `
+                + 'Keep native CSS sources under assets/styles or another source directory.'
+            );
+        }
 
         if (!fs.existsSync(absoluteFile)) {
             throw new Error(`Configured CSS entry does not exist: ${relativeFile}`);

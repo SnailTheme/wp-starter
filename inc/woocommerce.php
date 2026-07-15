@@ -69,6 +69,24 @@ if ( ! function_exists( 'st_wp_starter_woocommerce_setup' ) ) {
 }
 
 
+if ( ! function_exists( 'st_wp_starter_woocommerce_disable_default_styles' ) ) {
+	/**
+	 * Disable bundled WooCommerce styles when the project CSS was built.
+	 *
+	 * The Bare profile intentionally has no WooCommerce stylesheet, so it keeps
+	 * the plugin defaults. Blueprint or a customized project can provide
+	 * assets/css/woocommerce.min.css; in that case the generated stylesheet is
+	 * enqueued from /inc/scripts.php and can safely replace the bundled styles.
+	 *
+	 * @param bool $disable_default_styles Existing decision from earlier filters.
+	 * @return bool True when a project replacement stylesheet is available.
+	 */
+	function st_wp_starter_woocommerce_disable_default_styles( bool $disable_default_styles ): bool {
+		return $disable_default_styles || is_file( get_template_directory() . '/assets/css/woocommerce.min.css' );
+	}
+}
+
+
 if ( ! function_exists( 'st_wp_starter_woocommerce_wrapper_before' ) ) {
 	/**
 	 * Before Content — opening WooCommerce content wrapper.
@@ -240,6 +258,7 @@ if ( ! function_exists( 'st_wp_starter_register_woocommerce_hooks' ) ) {
 		add_action( 'after_setup_theme', 'st_wp_starter_woocommerce_setup' );
 		add_action( 'woocommerce_before_main_content', 'st_wp_starter_woocommerce_wrapper_before' );
 		add_action( 'woocommerce_after_main_content', 'st_wp_starter_woocommerce_wrapper_after' );
+		add_filter( 'st_wp_core_disable_woocommerce_default_styles', 'st_wp_starter_woocommerce_disable_default_styles' );
 		add_filter( 'woocommerce_output_related_products_args', 'st_wp_starter_woocommerce_related_products_args' );
 		add_filter( 'woocommerce_add_to_cart_fragments', 'st_wp_starter_woocommerce_cart_link_fragment' );
 	}

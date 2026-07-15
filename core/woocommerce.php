@@ -48,16 +48,32 @@ add_filter( 'body_class', 'st_wp_core_woocommerce_active_body_class' );
 
 if ( ! function_exists( 'st_wp_core_woocommerce_disable_default_styles' ) ) {
 	/**
-	 * Disable the default WooCommerce stylesheet.
+	 * Disable WooCommerce styles only when the theme provides a replacement.
 	 *
-	 * Removing the default WooCommerce stylesheet and using a project-built
-	 * stylesheet protects the theme during WooCommerce core updates.
+	 * WooCommerce must keep its bundled styles in an unstyled/Bare project. The
+	 * project-owned integration can opt out after confirming that a replacement
+	 * stylesheet was built. This prevents product, cart, and checkout screens
+	 * from becoming unstyled when an optional UI profile has no WooCommerce CSS.
 	 *
 	 * @link https://docs.woocommerce.com/document/disable-the-default-stylesheet/
 	 *
 	 * @return void
 	 */
 	function st_wp_core_woocommerce_disable_default_styles(): void {
+		/**
+		 * Filters whether WooCommerce's bundled styles should be disabled.
+		 *
+		 * Return true only when the project will enqueue a complete replacement.
+		 * The default is false so WooCommerce remains usable in a Bare theme.
+		 *
+		 * @param bool $disable_default_styles Whether to disable bundled styles.
+		 *
+		 * @since 1.1.0
+		 */
+		if ( ! apply_filters( 'st_wp_core_disable_woocommerce_default_styles', false ) ) {
+			return;
+		}
+
 		add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 	}
 }
