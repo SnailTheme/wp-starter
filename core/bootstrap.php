@@ -7,7 +7,7 @@
  * Override functions in /inc/ for project-specific customizations.
  *
  * Toolkit note:
- * /core/ is designed to be replaced by the future ST toolkit updater. Keep
+ * /core/ is designed to be replaced by the ST toolkit updater. Keep
  * project-specific callbacks, enqueues, and filters in /inc/ so generated
  * themes can receive core updates without losing local work.
  *
