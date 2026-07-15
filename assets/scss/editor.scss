@@ -1,87 +1,23 @@
 /**
- * WordPress editor canvas styles.
+ * Bare WordPress editor canvas styles.
  *
- * This file is project-owned and compiles to assets/css/editor.min.css.
- * It mirrors enough front-end styling into the post/page editor so block editor
- * content looks like the theme. Core admin UI styles belong in assets/scss/core/admin.scss.
+ * These functional rules load inside the Block API v3 editor iframe. Project
+ * typography and component styles can be added after choosing a design system.
  *
  * @package ST_WP_Starter
  */
 
-@use "sass:meta";
-@use "abstracts" as theme;
-@use "abstracts/variables/root";
+@use "generic/normalize";
+@use "generic/box-sizing";
+@use "foundation/media";
+@use "utilities/accessibility";
+@use "utilities/alignments";
 
 .editor-styles-wrapper {
-	box-sizing: border-box; // Acts as the editor iframe's HTML selector.
-	color: theme.$color__text-main;
-	font-family: theme.$font__main;
-	font-size: 1rem;
-	line-height: theme.$font__line-height-body;
-	background: theme.$color__background-body; // Fallback when no custom background color is defined.
+	box-sizing: border-box;
 
-  /*--------------------------------------------------------------
-  # Generic
-  --------------------------------------------------------------*/
-
-  /* Normalize
-  --------------------------------------------- */
-  @include meta.load-css("generic/normalize");
-
-  /* Box sizing
-  --------------------------------------------- */
-  @include meta.load-css("generic/box-sizing");
-
-  /*--------------------------------------------------------------
-  # Base
-  --------------------------------------------------------------*/
-
-  /* Typography
-  --------------------------------------------- */
-  button,
-  input,
-  select,
-  optgroup,
-  textarea {
-    color: theme.$color__text-main;
-    font-family: theme.$font__main;
-    font-size: 1rem;
-    line-height: theme.$font__line-height-body;
-  }
-
-  @include meta.load-css("base/typography/headings");
-  @include meta.load-css("base/typography/copy");
-
-  /* Elements
-  --------------------------------------------- */
-  @include meta.load-css("base/elements/container");
-  @include meta.load-css("base/elements/svg");
-  @include meta.load-css("base/elements/hr");
-  @include meta.load-css("base/elements/lists");
-  @include meta.load-css("base/elements/media");
-  @include meta.load-css("base/elements/tables");
-
-  /* Links
-  --------------------------------------------- */
-  @include meta.load-css("base/elements/links");
-
-  /* Forms
-  --------------------------------------------- */
-  @include meta.load-css("base/elements/buttons");
-  @include meta.load-css("base/elements/fields");
-
-  /*--------------------------------------------------------------
-  # Components
-  --------------------------------------------------------------*/
-
-  /* Captions used by classic content and migrated media. */
-  @include meta.load-css("components/media/captions");
-
-  /* Galleries used by classic content and migrated galleries. */
-  @include meta.load-css("components/media/galleries");
-
-  // Force Show animated elements
-  .animate__animated.opacity-0 {
-    opacity: 1!important;
-  }
+	// Animated front-end elements must remain visible while content is edited.
+	.animate__animated.opacity-0 {
+		opacity: 1 !important;
+	}
 }

@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Define the reusable core package version. The updater checks this value.
 if ( ! defined( 'ST_WP_CORE_VERSION' ) ) {
-	define( 'ST_WP_CORE_VERSION', '1.0.0' );
+	define( 'ST_WP_CORE_VERSION', '1.1.0' );
 }
 
 // Absolute filesystem path to this /core/ directory.
@@ -81,6 +81,7 @@ $core_files = array(
 	'scripts.php',                 // Script & style enqueuing.
 	'template-functions.php',      // Template enhancements.
 	'template-tags.php',           // Template helper functions.
+	'components.php',              // Toolkit-selected component integrations.
 	'customizer-runtime.php',      // Customizer runtime behavior.
 	'customizer.php',              // Customizer panels & settings.
 	'customizer-functions.php',    // Customizer override bridge.
