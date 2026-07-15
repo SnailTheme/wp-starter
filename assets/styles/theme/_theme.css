@@ -1,0 +1,13 @@
+/**
+ * Tailwind theme variables.
+ *
+ * Define project design tokens with Tailwind's `@theme` directive. Keep this
+ * file import-only so the variables are emitted through main.css and
+ * editor.css instead of becoming a third standalone stylesheet.
+ *
+ * Example:
+ *
+ * @theme {
+ *     --color-brand: oklch(0.62 0.17 250);
+ * }
+ */

@@ -1,7 +1,7 @@
 /**
  * Active toolkit UI profile for optional component adapters.
  *
- * This file is managed by `ui:install`. Components may read the value during
- * Sass compilation, but project styles should not treat it as a design token.
+ * Tailwind's main entries remain native CSS. This Sass module exists only so
+ * independently compiled component SCSS can select its Tailwind adapter.
  */
-$ui-profile: "bare";
+$ui-profile: "tailwind";

@@ -1,0 +1,24 @@
+/**
+ * WordPress alignment utilities shared by the front end and editor.
+ */
+@layer utilities {
+	.alignleft {
+		float: left;
+		margin-right: 1.5em;
+		margin-bottom: 1.5em;
+	}
+
+	.alignright {
+		float: right;
+		margin-left: 1.5em;
+		margin-bottom: 1.5em;
+	}
+
+	.aligncenter {
+		clear: both;
+		display: block;
+		margin-right: auto;
+		margin-bottom: 1.5em;
+		margin-left: auto;
+	}
+}

@@ -1,0 +1,8 @@
+/*! Tailwind-native styles in this file are compiled and auto-registered. */
+@reference "../main.css";
+
+/**
+ * WordPress registers this entry as `auto-registered-style`. Enqueue that
+ * handle only where the stylesheet is required. `@reference` exposes the main
+ * Tailwind context without duplicating framework output in this file.
+ */

@@ -1,0 +1,7 @@
+/**
+ * Front-end component styles.
+ *
+ * Prefer Tailwind utilities in templates. Add authored component CSS here
+ * only when a reusable front-end component is clearer as a named selector.
+ * Block-owned styles continue to live with their blocks.
+ */

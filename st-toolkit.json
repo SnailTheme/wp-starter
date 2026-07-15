@@ -1,18 +1,26 @@
 {
     "schema": 1,
-    "ui_profile": "bare",
+    "ui_profile": "tailwind",
     "ui_version": "1.0.0",
-    "ui_locked": false,
-    "css_entries": [],
-    "vite_plugins": [],
+    "ui_locked": true,
+    "css_entries": [
+        "assets/styles/main.css",
+        "assets/styles/editor.css"
+    ],
+    "vite_plugins": [
+        "tailwindcss"
+    ],
     "files": {
-        "assets/scss/_st-toolkit-profile.scss": "5632d5bfa3425ea9e88f1883420c9329b5ce030a6174324ea7637fa93611542d",
-        "assets/scss/editor.scss": "5257e53a75ed4a95682104fa450423c4ee991aa83186561be22c853cf7422737",
-        "assets/scss/foundation/_media.scss": "50c9facdb3c87b47db99c5e5acf98f26200b32d6bd33383f371c74b3077ab23a",
-        "assets/scss/generic/_box-sizing.scss": "aacb213114be32f124c9f449ab95d1f590174c9ddf7d7d0d258295132f79193e",
-        "assets/scss/generic/_normalize.scss": "7006dbfba27563688e9064bdbeb301dfa7a05a069a2bf946558996b4b7735fce",
-        "assets/scss/main.scss": "48ec1e7136889046fa625af55db9b15cd720ed9f97b314bf3fdace3d3ccadf12",
-        "assets/scss/utilities/_accessibility.scss": "50a1d982e4801cf2d72c633ef41f1d5f06602a05ee8a7e4cd01b8996c239a589",
-        "assets/scss/utilities/_alignments.scss": "66e90f05f4bf7beb5d7518df51ccecfd3a62e3626a33511a308f3a8171eafc1e"
+        "assets/scss/_st-toolkit-profile.scss": "c0081b557b0333c5a2a95b77545dbd2d30ce97af9d13a07c3957639a8079a001",
+        "assets/styles/base/_media.css": "d9a14bf2493f3eff2288bbf6554cef1b698013bc9fec2f3d07f85462b0d35027",
+        "assets/styles/components/_components.css": "5935520726dc3bb2f2618774c90f01ed30548db7abc113e1f7443fd6c9ca8368",
+        "assets/styles/editor.css": "2a774295c0f9150e24146bf605a01ada85376ec27f815ea266b2493b7f4d5403",
+        "assets/styles/editor/_overrides.css": "ae9b326209afdc6ba75189ed200997bc86fcec82c8774dec55d9707ca82bff61",
+        "assets/styles/main.css": "2d71f5e1626f6345adcca369e779e54fc49e3576fea290ace62b981173385723",
+        "assets/styles/styles-enqueue/auto-enqueued-style.css": "1fd98de52cde0c6cab7604645e514948fa5c7d80257d0da9368bf8e633ddbc06",
+        "assets/styles/styles-register/auto-registered-style.css": "c14743aaaea4f0517392316b44646397a8c365a53fcdd7e54c4f8225e6c57da3",
+        "assets/styles/theme/_theme.css": "6bd807b51f0bd210fe7e634d7c7faf5221d537b84c80b1a445020ceb843b0b52",
+        "assets/styles/utilities/_accessibility.css": "4200d801f3c148f3886109c557458fdddda8b2be201c7eac1dad7a4cf16e6d22",
+        "assets/styles/utilities/_alignments.css": "62bbfbb22bb5bba38c72949113c1df17e3b913a29f06acf7a376d4e890c2159e"
     }
 }

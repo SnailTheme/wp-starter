@@ -1,0 +1,9 @@
+/*! Tailwind-native styles in this file are compiled and auto-enqueued. */
+@reference "../main.css";
+
+/**
+ * Add front-end-only styles here or create another non-underscored CSS entry
+ * in this directory. Use Tailwind utilities in templates; `@reference` makes
+ * the main theme tokens and utilities available to `@apply` without emitting
+ * Tailwind's framework CSS again.
+ */

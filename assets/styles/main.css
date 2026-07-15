@@ -1,0 +1,19 @@
+/**
+ * Tailwind CSS v4 front-end entry point.
+ *
+ * The source path starts at the theme root so Tailwind discovers classes in
+ * PHP templates, source scripts, and installed blocks without a separate JS
+ * config. Generated assets and toolkit backups are excluded so their writes
+ * cannot trigger a development-watch rebuild loop.
+ *
+ * Underscore-prefixed imports are partials and do not compile independently.
+ */
+@import "tailwindcss" source("../../");
+@source not "../../assets/css";
+@source not "../../assets/js";
+@source not "../../.st-toolkit";
+@import "./theme/_theme.css";
+@import "./base/_media.css";
+@import "./components/_components.css";
+@import "./utilities/_accessibility.css";
+@import "./utilities/_alignments.css";

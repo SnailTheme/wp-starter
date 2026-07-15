@@ -1,0 +1,17 @@
+/**
+ * Shared responsive media defaults for the front end and block editor.
+ */
+@layer base {
+	embed,
+	iframe,
+	object,
+	img,
+	video {
+		max-width: 100%;
+	}
+
+	img,
+	video {
+		height: auto;
+	}
+}
