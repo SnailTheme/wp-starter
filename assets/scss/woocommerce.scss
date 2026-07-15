@@ -1,0 +1,45 @@
+/**
+Theme Name: ST WP Starter
+
+WooCommerce styles override
+
+This file is project-owned and compiles to assets/css/woocommerce.min.css.
+Core WooCommerce behavior lives in /core/woocommerce.php, while the visual
+theme override is enqueued from /inc/scripts.php so generated projects can
+customize it without editing core files.
+
+@package ST_WP_Starter
+ */
+
+// Emit shared project custom properties before the WooCommerce layers.
+@use "abstracts/variables/root";
+
+/**
+ * Shop tables
+ */
+@use "plugins/woocommerce/tables";
+
+/**
+ * Products
+ */
+@use "plugins/woocommerce/products";
+
+/**
+ * Single product
+ */
+@use "plugins/woocommerce/single-product";
+
+/**
+ * Checkout
+ */
+@use "plugins/woocommerce/checkout";
+
+/**
+ * General WooCommerce components
+ */
+@use "plugins/woocommerce/components";
+
+/**
+ * WooCommerce widgets
+ */
+@use "plugins/woocommerce/widgets";

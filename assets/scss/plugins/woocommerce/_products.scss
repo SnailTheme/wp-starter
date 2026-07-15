@@ -1,0 +1,62 @@
+@use "../../abstracts" as theme;
+
+ul.products {
+	margin: 0;
+	padding: 0;
+
+	li.product {
+		list-style: none;
+		position: relative;
+		margin-bottom: 2em;
+
+		img {
+			display: block;
+		}
+
+		.button {
+			display: block;
+		}
+	}
+}
+
+@media screen and (min-width: 48em) {
+
+	ul.products {
+
+		li.product {
+
+			@include theme.column-width(3);
+			float: left;
+			margin-right: theme.$columns__margin;
+
+			&.first {
+				clear: both;
+			}
+
+			&.last {
+				margin-right: 0;
+			}
+		}
+	}
+
+	ul.products.columns-1 {
+
+		li.product {
+			float: none;
+			width: 100%;
+		}
+
+	}
+
+	@for $i from 2 through 6 {
+
+		ul.products.columns-#{$i} {
+
+			li.product {
+
+				@include theme.column-width( $i );
+			}
+
+		}
+	}
+}

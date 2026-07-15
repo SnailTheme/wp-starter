@@ -1,22 +1,29 @@
-/**
- * Classic WordPress alignment helpers used by editor and legacy content.
- */
+@use "../abstracts" as theme;
+
 .alignleft {
+
+	/*rtl:ignore*/
 	float: left;
+
+	/*rtl:ignore*/
 	margin-right: 1.5em;
 	margin-bottom: 1.5em;
 }
 
 .alignright {
+
+	/*rtl:ignore*/
 	float: right;
+
+	/*rtl:ignore*/
 	margin-left: 1.5em;
 	margin-bottom: 1.5em;
 }
 
 .aligncenter {
 	clear: both;
-	display: block;
-	margin-right: auto;
+
+	@include theme.center-block;
+
 	margin-bottom: 1.5em;
-	margin-left: auto;
 }

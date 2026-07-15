@@ -1,25 +1,81 @@
 /**
- * Bare WordPress editor canvas styles.
+ * WordPress editor canvas styles.
  *
- * These functional rules load inside the Block API v3 editor iframe. Project
- * typography and component styles can be added after choosing a design system.
+ * This file is project-owned and compiles to assets/css/editor.min.css.
+ * It mirrors enough front-end styling into the post/page editor so block editor
+ * content looks like the theme. Core admin UI styles belong in assets/scss/core/admin.scss.
  * WordPress loads the compiled file through `add_editor_style()` and scopes
- * these top-level module selectors to `.editor-styles-wrapper`. Keeping the
- * modules top-level lets WordPress correctly transform root selectors such as
- * `html`, `body`, and `:root` without affecting the surrounding admin shell.
+ * top-level selectors to `.editor-styles-wrapper`, including root selectors
+ * emitted by Normalize and shared theme modules.
  *
  * @package ST_WP_Starter
  */
 
+@use "sass:meta";
+@use "abstracts" as theme;
+@use "abstracts/variables/root";
 @use "generic/normalize";
 @use "generic/box-sizing";
-@use "foundation/media";
+@use "base/elements/media";
 @use "utilities/accessibility";
 @use "utilities/alignments";
 
 .editor-styles-wrapper {
-	// Animated front-end elements must remain visible while content is edited.
-	.animate__animated.opacity-0 {
-		opacity: 1 !important;
-	}
+	color: theme.$color__text-main;
+	font-family: theme.$font__main;
+	font-size: 1rem;
+	line-height: theme.$font__line-height-body;
+	background: theme.$color__background-body; // Fallback when no custom background color is defined.
+
+  /*--------------------------------------------------------------
+  # Base
+  --------------------------------------------------------------*/
+
+  /* Typography
+  --------------------------------------------- */
+  button,
+  input,
+  select,
+  optgroup,
+  textarea {
+    color: theme.$color__text-main;
+    font-family: theme.$font__main;
+    font-size: 1rem;
+    line-height: theme.$font__line-height-body;
+  }
+
+  @include meta.load-css("base/typography/headings");
+  @include meta.load-css("base/typography/copy");
+
+  /* Elements
+  --------------------------------------------- */
+  @include meta.load-css("base/elements/container");
+  @include meta.load-css("base/elements/svg");
+  @include meta.load-css("base/elements/hr");
+  @include meta.load-css("base/elements/lists");
+  @include meta.load-css("base/elements/tables");
+
+  /* Links
+  --------------------------------------------- */
+  @include meta.load-css("base/elements/links");
+
+  /* Forms
+  --------------------------------------------- */
+  @include meta.load-css("base/elements/buttons");
+  @include meta.load-css("base/elements/fields");
+
+  /*--------------------------------------------------------------
+  # Components
+  --------------------------------------------------------------*/
+
+  /* Captions used by classic content and migrated media. */
+  @include meta.load-css("components/media/captions");
+
+  /* Galleries used by classic content and migrated galleries. */
+  @include meta.load-css("components/media/galleries");
+
+  // Force Show animated elements
+  .animate__animated.opacity-0 {
+    opacity: 1!important;
+  }
 }

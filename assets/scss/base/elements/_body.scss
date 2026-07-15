@@ -1,0 +1,5 @@
+@use "../../abstracts" as theme;
+
+body {
+	background: theme.$color__background-body; // Fallback for when there is no custom background color defined.
+}

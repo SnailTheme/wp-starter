@@ -22,16 +22,81 @@ Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
 
-/**
- * Bare UI profile.
- *
- * This entry intentionally provides only the functional baseline needed to
- * start a theme. Add project design rules here, or install another UI profile
- * with the toolkit before development begins.
- */
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Generic
+	- Normalize
+	- Box sizing
+# Base
+	- Typography
+	- Elements
+	- Links
+	- Forms
+## Layouts
+# Components
+	- Navigation
+	- Posts and pages
+	- Comments
+	- Widgets
+	- Media
+	- Captions
+	- Galleries
+# plugins
+	- Jetpack infinite scroll
+# Utilities
+	- Accessibility
+	- Alignments
 
+--------------------------------------------------------------*/
+
+// Emit shared project custom properties before the theme layers.
+@use "abstracts/variables/root";
+
+/*--------------------------------------------------------------
+# Generic
+--------------------------------------------------------------*/
+
+/* Normalize
+--------------------------------------------- */
 @use "generic/normalize";
+
+/* Box sizing
+--------------------------------------------- */
 @use "generic/box-sizing";
-@use "foundation/media";
+
+/*--------------------------------------------------------------
+# Base
+--------------------------------------------------------------*/
+@use "base/base";
+
+/*--------------------------------------------------------------
+# Layouts
+--------------------------------------------------------------*/
+// @use "layouts/content-sidebar"; // Uncomment this line for a sidebar on right side of your content.
+// @use "layouts/sidebar-content"; // Uncomment this line for a sidebar on left side of your content.
+
+/*--------------------------------------------------------------
+# Components
+--------------------------------------------------------------*/
+@use "components/components";
+
+/*--------------------------------------------------------------
+# Plugins
+--------------------------------------------------------------*/
+
+/* Jetpack infinite scroll
+--------------------------------------------- */
+@use "plugins/jetpack/infinite-scroll";
+
+/*--------------------------------------------------------------
+# Utilities
+--------------------------------------------------------------*/
+
+/* Accessibility
+--------------------------------------------- */
 @use "utilities/accessibility";
+
+/* Alignments
+--------------------------------------------- */
 @use "utilities/alignments";
