@@ -51,6 +51,8 @@
     "toolkit:ui-list": "@php vendor/bin/st-toolkit ui:list",
     "toolkit:ui-status": "@php vendor/bin/st-toolkit ui:status --theme=.",
     "toolkit:ui-install": "@php vendor/bin/st-toolkit ui:install --theme=.",
+    "toolkit:ui-install:dry-run": "@php vendor/bin/st-toolkit ui:install --theme=. --dry-run",
+    "toolkit:ui-replace": "@php vendor/bin/st-toolkit ui:install --theme=. --replace --force",
     "toolkit:components-list": "@php vendor/bin/st-toolkit components:list",
     "toolkit:components-install": "@php vendor/bin/st-toolkit components:install --theme=.",
     "make-pot": [
