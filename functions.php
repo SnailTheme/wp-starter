@@ -18,7 +18,7 @@ if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
 
 // Define theme version.
 if ( ! defined( 'ST_WP_STARTER_VERSION' ) ) {
-	define( 'ST_WP_STARTER_VERSION', '1.0.0' );
+	define( 'ST_WP_STARTER_VERSION', '1.1.0' );
 }
 
 // Define theme path constant.
@@ -46,6 +46,7 @@ if ( file_exists( ST_WP_STARTER_THEME_PATH . '/inc/bootstrap.php' ) ) {
  * - scripts.php (Script & style enqueuing)
  * - template-functions.php (Template enhancements)
  * - template-tags.php (Template helper functions)
+ * - components.php (Toolkit-selected component integrations)
  * - customizer-runtime.php (Customizer runtime behavior)
  * - customizer.php (Customizer panels & settings)
  * - customizer-functions.php (Customizer override bridge)

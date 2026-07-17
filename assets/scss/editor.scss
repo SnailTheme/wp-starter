@@ -1,85 +1,25 @@
 /**
- * WordPress editor canvas styles.
+ * Bare WordPress editor canvas styles.
  *
- * This file is project-owned and compiles to assets/css/editor.min.css.
- * It mirrors enough front-end styling into the post/page editor so block editor
- * content looks like the theme. Core admin UI styles belong in assets/scss/core/admin.scss.
+ * These functional rules load inside the Block API v3 editor iframe. Project
+ * typography and component styles can be added after choosing a design system.
+ * WordPress loads the compiled file through `add_editor_style()` and scopes
+ * these top-level module selectors to `.editor-styles-wrapper`. Keeping the
+ * modules top-level lets WordPress correctly transform root selectors such as
+ * `html`, `body`, and `:root` without affecting the surrounding admin shell.
  *
  * @package ST_WP_Starter
  */
 
-// Import variables and mixins.
-@import "abstracts/abstracts";
+@use "generic/normalize";
+@use "generic/box-sizing";
+@use "foundation/media";
+@use "utilities/accessibility";
+@use "utilities/alignments";
 
 .editor-styles-wrapper {
-
-  /*--------------------------------------------------------------
-  # Generic
-  --------------------------------------------------------------*/
-
-  /* Normalize
-  --------------------------------------------- */
-  @import "generic/normalize";
-
-  /* Box sizing
-  --------------------------------------------- */
-  box-sizing: border-box; // acts as HTML selector
-  @import "generic/box-sizing";
-
-  /*--------------------------------------------------------------
-  # Base
-  --------------------------------------------------------------*/
-
-  /* Typography
-  --------------------------------------------- */
-  // dump from => "base/typography/typography";
-  color: $color__text-main;
-  font-family: $font__main;
-  font-size: 1rem;
-  line-height: $font__line-height-body;
-
-  button,
-  input,
-  select,
-  optgroup,
-  textarea {
-    color: $color__text-main;
-    font-family: $font__main;
-    font-size: 1rem;
-    line-height: $font__line-height-body;
-  }
-
-  @import "base/typography/headings";
-  @import "base/typography/copy";
-
-  /* Elements
-  --------------------------------------------- */
-  // dump from => "base/elements/body";
-  background: $color__background-body; // Fallback for when there is no custom background color defined.
-
-  @import "base/elements/container";
-  @import "base/elements/svg";
-  @import "base/elements/hr";
-  @import "base/elements/lists";
-  @import "base/elements/media";
-  @import "base/elements/tables";
-
-  /* Links
-  --------------------------------------------- */
-  @import "base/elements/links";
-
-  /* Forms
-  --------------------------------------------- */
-  @import "base/elements/buttons";
-  @import "base/elements/fields";
-
-  /*--------------------------------------------------------------
-  # Components
-  --------------------------------------------------------------*/
-  @import "components/components";
-
-  // Force Show animated elements
-  .animate__animated.opacity-0 {
-    opacity: 1!important;
-  }
+	// Animated front-end elements must remain visible while content is edited.
+	.animate__animated.opacity-0 {
+		opacity: 1 !important;
+	}
 }
