@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3721c858fe0bef95b4d4019b5b895d0a",
+    "content-hash": "b641ca3a91d1e9d782f5d621f370425a",
     "packages": [],
     "packages-dev": [
         {
@@ -734,7 +734,7 @@
         },
         {
             "name": "snailtheme/wp-starter-toolkit",
-            "version": "dev-main",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnailTheme/wp-starter-toolkit.git",
@@ -754,7 +754,6 @@
                 "symfony/finder": "^6.4 || ^7.0",
                 "symfony/process": "^6.4 || ^7.0"
             },
-            "default-branch": true,
             "bin": [
                 "bin/st-toolkit"
             ],
@@ -775,7 +774,7 @@
             "description": "Developer toolkit for ST WP Starter core updates, UI profiles, curated blocks, and reusable components.",
             "homepage": "https://www.snailtheme.com/",
             "support": {
-                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/main",
+                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.1.0",
                 "issues": "https://github.com/SnailTheme/wp-starter-toolkit/issues"
             },
             "time": "2026-07-17T13:47:26+00:00"
@@ -2206,7 +2205,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "snailtheme/wp-starter-toolkit": 20,
         "wp-coding-standards/wpcs": 20
     },
     "prefer-stable": false,
