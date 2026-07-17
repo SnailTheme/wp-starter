@@ -18,7 +18,7 @@
     "php": ">=8.2"
   },
   "require-dev": {
-    "snailtheme/wp-starter-toolkit": "dev-main",
+    "snailtheme/wp-starter-toolkit": "^1.1",
     "squizlabs/php_codesniffer": "^3.9",
     "wp-coding-standards/wpcs": "dev-main",
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
