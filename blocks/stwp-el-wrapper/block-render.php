@@ -26,7 +26,7 @@ $is_preview = ! empty( $is_preview );
 
 $allowed_blocks = array_map(
 	static fn ( string $name ): string => "{$namespace}/{$name}",
-	array( 'el-container', 'el-heading', 'el-text', 'el-columns', 'el-grid', 'el-content-with-image' )
+	array( 'el-container', 'el-heading', 'el-text', 'el-columns', 'el-grid', 'el-content-with-image', 'el-faq' )
 );
 $template       = array( array( "{$namespace}/el-container", array() ) );
 $classes        = $root;

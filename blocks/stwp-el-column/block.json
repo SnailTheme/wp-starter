@@ -12,7 +12,8 @@
     "stwp/el-text",
     "stwp/el-columns",
     "stwp/el-grid",
-    "stwp/el-content-with-image"
+    "stwp/el-content-with-image",
+    "stwp/el-faq"
   ],
   "acf": {
     "blockVersion": 3,

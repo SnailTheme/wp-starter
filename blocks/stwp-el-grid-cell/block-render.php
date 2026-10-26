@@ -35,7 +35,7 @@ $classes        = "{$root} {$root}--span-{$span}";
 $style          = "--{$root}-span:{$span};";
 $allowed_blocks = array_map(
 	static fn ( string $name ): string => "{$namespace}/{$name}",
-	array( 'el-container', 'el-heading', 'el-text', 'el-columns', 'el-grid', 'el-content-with-image' )
+	array( 'el-container', 'el-heading', 'el-text', 'el-columns', 'el-grid', 'el-content-with-image', 'el-faq' )
 );
 $template       = array( array( "{$namespace}/el-text", array() ) );
 // WordPress already applies native supports to the editor's outer block.

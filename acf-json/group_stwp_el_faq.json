@@ -1,0 +1,50 @@
+{
+  "key": "group_stwp_el_faq",
+  "title": "Block: Elemental FAQ",
+  "fields": [
+    { "key": "field_stwp_el_faq_fields_tab", "label": "Fields", "name": "", "type": "tab", "placement": "top" },
+    {
+      "key": "field_stwp_el_faq_fields",
+      "label": "Fields",
+      "name": "stwp-el-faq-fields",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_stwp_el_faq_items",
+          "label": "Items",
+          "name": "stwp-el-faq-fields-items",
+          "type": "repeater",
+          "layout": "block",
+          "min": 0,
+          "button_label": "Add question",
+          "collapsed": "field_stwp_el_faq_question",
+          "sub_fields": [
+            { "key": "field_stwp_el_faq_question", "label": "Question", "name": "stwp-el-faq-fields-item__question", "type": "text", "required": 1 },
+            { "key": "field_stwp_el_faq_answer", "label": "Answer", "name": "stwp-el-faq-fields-item__answer", "type": "wysiwyg", "required": 1, "tabs": "all", "toolbar": "basic", "media_upload": 0, "delay": 0 }
+          ]
+        }
+      ]
+    },
+    { "key": "field_stwp_el_faq_settings_tab", "label": "Settings", "name": "", "type": "tab", "placement": "top" },
+    {
+      "key": "field_stwp_el_faq_settings",
+      "label": "Settings",
+      "name": "stwp-el-faq-settings",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        { "key": "field_stwp_el_faq_schema_enabled", "label": "Enable FAQ schema", "name": "stwp-el-faq-settings__schema_enabled", "type": "true_false", "default_value": 1, "ui": 1, "instructions": "Publish structured data for complete, visible questions and answers. Disable when another integration owns this content's schema." },
+        { "key": "field_stwp_el_faq_first_open", "label": "Open first item initially", "name": "stwp-el-faq-settings__first_open", "type": "true_false", "default_value": 1, "ui": 1 }
+      ]
+    }
+  ],
+  "location": [ [ { "param": "block", "operator": "==", "value": "stwp/el-faq" } ] ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 0
+}

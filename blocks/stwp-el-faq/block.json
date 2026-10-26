@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "stwp/el-faq",
+  "title": "Elemental FAQ",
+  "description": "Accessible questions and answers with optional structured data.",
+  "category": "st-wp-starter",
+  "icon": "editor-help",
+  "keywords": [ "faq", "questions", "accordion" ],
+  "textdomain": "st-wp-starter",
+  "acf": { "blockVersion": 3, "renderTemplate": "block-render.php" },
+  "supports": { "html": false, "align": false },
+  "viewStyle": [ "file:./assets/css/view-style.min.css" ],
+  "editorStyle": [ "file:./assets/css/editor-style.min.css" ]
+}
