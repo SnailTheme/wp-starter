@@ -1,0 +1,1 @@
+.stwp-el-grid-cell{grid-column:span min(var(--stwp-el-grid-cell-span, 1),var(--stwp-el-grid-tracks, 1));min-width:0;overflow-wrap:anywhere}.stwp-el-grid-cell__inner{min-width:0}

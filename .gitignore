@@ -2,3 +2,5 @@
 /vendor
 /AGENTS.md
 /.agents/
+/CLAUDE.md
+/.claude/skills/wp-starter-*/

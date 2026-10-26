@@ -1,0 +1,12 @@
+@use "styles";
+
+.editor-styles-wrapper {
+  @include styles.render;
+
+  // Apply spans to Gutenberg's actual grid items, clamped at every breakpoint.
+  @for $span from 1 through 6 {
+    .stwp-el-grid__inner > .block-editor-block-list__block:has(> .stwp-el-grid-cell--span-#{$span}) {
+      grid-column: span min(#{$span}, var(--stwp-el-grid-tracks, 1));
+    }
+  }
+}

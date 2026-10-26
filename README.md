@@ -52,9 +52,10 @@ $ composer toolkit:ui-list
 $ composer toolkit:ui-install bare
 ```
 
-`composer st-toolkit init` installs `AGENTS.md` and `.agents/` with local
-theme development notes. Those files are ignored by Git by default so they can
-guide development without being committed or deployed.
+`composer st-toolkit init` installs local development guides and task skills
+for Codex and Claude Code. Start your agent from the theme directory after
+initialization. These files are ignored by Git by default; also exclude them
+from manual deployments.
 
 Choose `bare`, `blueprint`, or `tailwind` before starting project styling. The
 toolkit locks this initial UI choice because replacing it later removes the old

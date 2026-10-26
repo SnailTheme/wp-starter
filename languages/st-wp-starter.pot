@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-17T13:52:28+00:00\n"
+"POT-Creation-Date: 2026-10-26T18:21:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: st-wp-starter\n"
@@ -55,6 +55,10 @@ msgstr ""
 #: 404.php:48
 #, php-format
 msgid "Try looking in the monthly archives. %1$s"
+msgstr ""
+
+#: blocks/stwp-el-content-with-image/block-render.php:68
+msgid "Choose an image in Fields."
 msgstr ""
 
 #: blocks/stwp-slider/block-render.php:152
@@ -322,6 +326,51 @@ msgstr ""
 #: template-parts/content.php:40
 #, php-format
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: blocks/stwp-el-column/block.json
+msgctxt "block title"
+msgid "Elemental Column"
+msgstr ""
+
+#: blocks/stwp-el-columns/block.json
+msgctxt "block title"
+msgid "Elemental Columns"
+msgstr ""
+
+#: blocks/stwp-el-container/block.json
+msgctxt "block title"
+msgid "Elemental Container"
+msgstr ""
+
+#: blocks/stwp-el-content-with-image/block.json
+msgctxt "block title"
+msgid "Elemental Content With Image"
+msgstr ""
+
+#: blocks/stwp-el-grid-cell/block.json
+msgctxt "block title"
+msgid "Elemental Grid Cell"
+msgstr ""
+
+#: blocks/stwp-el-grid/block.json
+msgctxt "block title"
+msgid "Elemental Grid"
+msgstr ""
+
+#: blocks/stwp-el-heading/block.json
+msgctxt "block title"
+msgid "Elemental Heading"
+msgstr ""
+
+#: blocks/stwp-el-text/block.json
+msgctxt "block title"
+msgid "Elemental Text"
+msgstr ""
+
+#: blocks/stwp-el-wrapper/block.json
+msgctxt "block title"
+msgid "Elemental Wrapper"
 msgstr ""
 
 #: blocks/stwp-slider/block.json

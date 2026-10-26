@@ -1,0 +1,35 @@
+@mixin render {
+  .stwp-el-columns {
+    --stwp-el-columns-gap: var(--wp--preset--spacing--50, 2rem);
+    min-width: 0;
+
+    &--gap-none { --stwp-el-columns-gap: 0; }
+    &--gap-small { --stwp-el-columns-gap: var(--wp--preset--spacing--30, 1rem); }
+    &--gap-medium { --stwp-el-columns-gap: var(--wp--preset--spacing--50, 2rem); }
+    &--gap-large { --stwp-el-columns-gap: var(--wp--preset--spacing--70, 3rem); }
+
+    &__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--stwp-el-columns-gap);
+      min-width: 0;
+    }
+
+    // ACF keeps native editor block wrappers around each child.
+    &__inner > :is(.stwp-el-column, .block-editor-block-list__block) {
+      width: auto;
+      min-width: 0;
+      max-width: none;
+      margin: 0;
+    }
+
+    @each $breakpoint in 40, 48, 64 {
+      @media (min-width: #{$breakpoint}rem) {
+        &--collapse-#{$breakpoint} > .stwp-el-columns__inner { display: flex; }
+        &--collapse-#{$breakpoint}.stwp-el-columns--align-start > .stwp-el-columns__inner { align-items: flex-start; }
+        &--collapse-#{$breakpoint}.stwp-el-columns--align-center > .stwp-el-columns__inner { align-items: center; }
+        &--collapse-#{$breakpoint}.stwp-el-columns--align-stretch > .stwp-el-columns__inner { align-items: stretch; }
+      }
+    }
+  }
+}

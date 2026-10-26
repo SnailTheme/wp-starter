@@ -1,0 +1,12 @@
+@use "styles";
+
+.editor-styles-wrapper {
+  @include styles.render;
+
+  // Relative weights belong on Gutenberg's flex items, not just preview roots.
+  @for $weight from 1 through 12 {
+    .stwp-el-columns__inner > .block-editor-block-list__block:has(> .stwp-el-column--weight-#{$weight}) {
+      flex: $weight 1 0;
+    }
+  }
+}

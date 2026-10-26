@@ -1,0 +1,10 @@
+@mixin render {
+  .stwp-el-text {
+    min-width: 0;
+    overflow-wrap: anywhere;
+
+    &__inner { min-width: 0; }
+    &__inner > :first-child { margin-block-start: 0; }
+    &__inner > :last-child { margin-block-end: 0; }
+  }
+}

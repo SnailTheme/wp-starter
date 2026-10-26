@@ -1,0 +1,54 @@
+@mixin render {
+  .stwp-el-content-with-image {
+    --stwp-el-content-with-image-gap: var(--wp--preset--spacing--50, 2rem);
+    min-width: 0;
+
+    &--gap-none { --stwp-el-content-with-image-gap: 0; }
+    &--gap-small { --stwp-el-content-with-image-gap: var(--wp--preset--spacing--30, 1rem); }
+    &--gap-medium { --stwp-el-content-with-image-gap: var(--wp--preset--spacing--50, 2rem); }
+    &--gap-large { --stwp-el-content-with-image-gap: var(--wp--preset--spacing--70, 3rem); }
+
+    &__layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--stwp-el-content-with-image-gap);
+    }
+
+    &--align-start > .stwp-el-content-with-image__layout { align-items: start; }
+    &--align-center > .stwp-el-content-with-image__layout { align-items: center; }
+    &--align-end > .stwp-el-content-with-image__layout { align-items: end; }
+
+    &__content, &__inner, &__media { min-width: 0; }
+    &__content {
+      grid-row: 1;
+      overflow-wrap: anywhere;
+    }
+    &__image { margin: 0; }
+    &__image img { display: block; width: 100%; height: auto; }
+    &__placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 12rem;
+      border: 1px dashed currentColor;
+      padding: var(--wp--preset--spacing--30, 1rem);
+      box-sizing: border-box;
+    }
+
+    @each $breakpoint in 40, 48, 64 {
+      @media (min-width: #{$breakpoint}rem) {
+        &--has-media.stwp-el-content-with-image--collapse-#{$breakpoint} > .stwp-el-content-with-image__layout {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        &--has-media.stwp-el-content-with-image--collapse-#{$breakpoint}.stwp-el-content-with-image--image-left > .stwp-el-content-with-image__layout > .stwp-el-content-with-image__media {
+          grid-column: 1;
+          grid-row: 1;
+        }
+
+        &--has-media.stwp-el-content-with-image--collapse-#{$breakpoint}.stwp-el-content-with-image--image-left > .stwp-el-content-with-image__layout > .stwp-el-content-with-image__content {
+          grid-column: 2;
+        }
+      }
+    }
+  }
+}

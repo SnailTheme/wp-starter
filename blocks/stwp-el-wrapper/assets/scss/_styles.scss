@@ -1,0 +1,12 @@
+@mixin render {
+  .stwp-el-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+
+    &__inner {
+      min-width: 0;
+      width: 100%;
+    }
+  }
+}

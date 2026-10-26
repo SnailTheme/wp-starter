@@ -1,0 +1,103 @@
+{
+  "key": "group_stwp_el_container",
+  "title": "Block: Elemental Container",
+  "fields": [
+    {
+      "key": "field_stwp_el_container_fields_tab",
+      "label": "Fields",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_stwp_el_container_fields",
+      "label": "Fields",
+      "name": "stwp-el-container-fields",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": []
+    },
+    {
+      "key": "field_stwp_el_container_settings_tab",
+      "label": "Settings",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_stwp_el_container_settings",
+      "label": "Settings",
+      "name": "stwp-el-container-settings",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "name": "stwp-el-container-settings__width",
+          "label": "Width",
+          "type": "select",
+          "choices": {
+            "content": "Content",
+            "wide": "Wide",
+            "full": "Full",
+            "custom": "Custom"
+          },
+          "default_value": "content",
+          "return_format": "value",
+          "multiple": 0,
+          "allow_null": 0,
+          "ui": 0,
+          "key": "field_stwp_el_container_settings_width"
+        },
+        {
+          "name": "stwp-el-container-settings__custom_width",
+          "label": "Custom Width",
+          "type": "text",
+          "default_value": "60rem",
+          "instructions": "Use a positive length in px, rem, em, ch, %, or vw.",
+          "conditional_logic": [
+            [
+              {
+                "field": "field_stwp_el_container_settings_width",
+                "operator": "==",
+                "value": "custom"
+              }
+            ]
+          ],
+          "key": "field_stwp_el_container_settings_custom_width"
+        },
+        {
+          "name": "stwp-el-container-settings__position",
+          "label": "Position",
+          "type": "select",
+          "choices": {
+            "start": "Start",
+            "center": "Center",
+            "end": "End"
+          },
+          "default_value": "center",
+          "return_format": "value",
+          "multiple": 0,
+          "allow_null": 0,
+          "ui": 0,
+          "key": "field_stwp_el_container_settings_position"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "stwp/el-container"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 0
+}

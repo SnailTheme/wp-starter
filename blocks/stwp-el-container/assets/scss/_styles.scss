@@ -1,0 +1,17 @@
+@mixin render {
+  .stwp-el-container {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+
+    &--width-content { max-width: var(--wp--style--global--content-size, 60rem); }
+    &--width-wide { max-width: var(--wp--style--global--wide-size, 80rem); }
+    &--width-full { max-width: none; }
+    &--width-custom { max-width: var(--stwp-el-container-custom-width, 60rem); }
+    &--position-start { margin-inline: 0 auto; }
+    &--position-center { margin-inline: auto; }
+    &--position-end { margin-inline: auto 0; }
+
+    &__inner { min-width: 0; }
+  }
+}

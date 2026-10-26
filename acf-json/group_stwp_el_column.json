@@ -1,0 +1,64 @@
+{
+  "key": "group_stwp_el_column",
+  "title": "Block: Elemental Column",
+  "fields": [
+    {
+      "key": "field_stwp_el_column_fields_tab",
+      "label": "Fields",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_stwp_el_column_fields",
+      "label": "Fields",
+      "name": "stwp-el-column-fields",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": []
+    },
+    {
+      "key": "field_stwp_el_column_settings_tab",
+      "label": "Settings",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_stwp_el_column_settings",
+      "label": "Settings",
+      "name": "stwp-el-column-settings",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "name": "stwp-el-column-settings__weight",
+          "label": "Relative Weight",
+          "type": "number",
+          "min": 1,
+          "max": 12,
+          "step": 1,
+          "default_value": 1,
+          "required": 0,
+          "key": "field_stwp_el_column_settings_weight"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "stwp/el-column"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 0
+}

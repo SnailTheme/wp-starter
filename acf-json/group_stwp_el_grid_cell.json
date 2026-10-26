@@ -1,0 +1,64 @@
+{
+  "key": "group_stwp_el_grid_cell",
+  "title": "Block: Elemental Grid Cell",
+  "fields": [
+    {
+      "key": "field_stwp_el_grid_cell_fields_tab",
+      "label": "Fields",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_stwp_el_grid_cell_fields",
+      "label": "Fields",
+      "name": "stwp-el-grid-cell-fields",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": []
+    },
+    {
+      "key": "field_stwp_el_grid_cell_settings_tab",
+      "label": "Settings",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_stwp_el_grid_cell_settings",
+      "label": "Settings",
+      "name": "stwp-el-grid-cell-settings",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "name": "stwp-el-grid-cell-settings__span",
+          "label": "Column Span",
+          "type": "number",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "default_value": 1,
+          "required": 0,
+          "key": "field_stwp_el_grid_cell_settings_span"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "stwp/el-grid-cell"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 0
+}

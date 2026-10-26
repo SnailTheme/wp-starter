@@ -1,0 +1,103 @@
+{
+  "key": "group_stwp_el_grid",
+  "title": "Block: Elemental Grid",
+  "fields": [
+    {
+      "key": "field_stwp_el_grid_fields_tab",
+      "label": "Fields",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_stwp_el_grid_fields",
+      "label": "Fields",
+      "name": "stwp-el-grid-fields",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": []
+    },
+    {
+      "key": "field_stwp_el_grid_settings_tab",
+      "label": "Settings",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_stwp_el_grid_settings",
+      "label": "Settings",
+      "name": "stwp-el-grid-settings",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "name": "stwp-el-grid-settings__desktop",
+          "label": "Desktop Columns",
+          "type": "number",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "default_value": 3,
+          "required": 0,
+          "key": "field_stwp_el_grid_settings_desktop"
+        },
+        {
+          "name": "stwp-el-grid-settings__tablet",
+          "label": "Tablet Columns",
+          "type": "number",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "default_value": 2,
+          "required": 0,
+          "key": "field_stwp_el_grid_settings_tablet"
+        },
+        {
+          "name": "stwp-el-grid-settings__mobile",
+          "label": "Mobile Columns",
+          "type": "number",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "default_value": 1,
+          "required": 0,
+          "key": "field_stwp_el_grid_settings_mobile"
+        },
+        {
+          "name": "stwp-el-grid-settings__gap",
+          "label": "Gap",
+          "type": "select",
+          "choices": {
+            "none": "None",
+            "small": "Small",
+            "medium": "Medium",
+            "large": "Large"
+          },
+          "default_value": "medium",
+          "return_format": "value",
+          "multiple": 0,
+          "allow_null": 0,
+          "ui": 0,
+          "key": "field_stwp_el_grid_settings_gap"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "stwp/el-grid"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 0
+}

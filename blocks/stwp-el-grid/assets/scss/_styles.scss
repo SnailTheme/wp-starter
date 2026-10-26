@@ -1,0 +1,34 @@
+@mixin render {
+  .stwp-el-grid {
+    --stwp-el-grid-tracks: var(--stwp-el-grid-mobile, 1);
+    --stwp-el-grid-gap: var(--wp--preset--spacing--50, 2rem);
+    min-width: 0;
+
+    &--gap-none { --stwp-el-grid-gap: 0; }
+    &--gap-small { --stwp-el-grid-gap: var(--wp--preset--spacing--30, 1rem); }
+    &--gap-medium { --stwp-el-grid-gap: var(--wp--preset--spacing--50, 2rem); }
+    &--gap-large { --stwp-el-grid-gap: var(--wp--preset--spacing--70, 3rem); }
+
+    &__inner {
+      display: grid;
+      grid-template-columns: repeat(var(--stwp-el-grid-tracks), minmax(0, 1fr));
+      gap: var(--stwp-el-grid-gap);
+      min-width: 0;
+    }
+
+    &__inner > :is(.stwp-el-grid-cell, .block-editor-block-list__block) {
+      min-width: 0;
+      width: auto;
+      max-width: none;
+      margin: 0;
+    }
+
+    @media (min-width: 48rem) {
+      --stwp-el-grid-tracks: var(--stwp-el-grid-tablet, 2);
+    }
+
+    @media (min-width: 64rem) {
+      --stwp-el-grid-tracks: var(--stwp-el-grid-desktop, 3);
+    }
+  }
+}

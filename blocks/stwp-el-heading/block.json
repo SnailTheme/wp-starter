@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "stwp/el-heading",
+  "title": "Elemental Heading",
+  "category": "st-wp-starter",
+  "icon": "layout",
+  "textdomain": "st-wp-starter",
+  "allowedBlocks": [
+    "core/heading",
+    "core/paragraph"
+  ],
+  "acf": {
+    "blockVersion": 3,
+    "renderTemplate": "block-render.php"
+  },
+  "supports": {
+    "jsx": true,
+    "html": false,
+    "align": false
+  },
+  "viewStyle": [
+    "file:./assets/css/view-style.min.css"
+  ],
+  "editorStyle": [
+    "file:./assets/css/editor-style.min.css"
+  ]
+}

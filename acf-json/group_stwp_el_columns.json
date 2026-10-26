@@ -1,0 +1,102 @@
+{
+  "key": "group_stwp_el_columns",
+  "title": "Block: Elemental Columns",
+  "fields": [
+    {
+      "key": "field_stwp_el_columns_fields_tab",
+      "label": "Fields",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_stwp_el_columns_fields",
+      "label": "Fields",
+      "name": "stwp-el-columns-fields",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": []
+    },
+    {
+      "key": "field_stwp_el_columns_settings_tab",
+      "label": "Settings",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_stwp_el_columns_settings",
+      "label": "Settings",
+      "name": "stwp-el-columns-settings",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "name": "stwp-el-columns-settings__gap",
+          "label": "Gap",
+          "type": "select",
+          "choices": {
+            "none": "None",
+            "small": "Small",
+            "medium": "Medium",
+            "large": "Large"
+          },
+          "default_value": "medium",
+          "return_format": "value",
+          "multiple": 0,
+          "allow_null": 0,
+          "ui": 0,
+          "key": "field_stwp_el_columns_settings_gap"
+        },
+        {
+          "name": "stwp-el-columns-settings__alignment",
+          "label": "Vertical Alignment",
+          "type": "select",
+          "choices": {
+            "start": "Start",
+            "center": "Center",
+            "stretch": "Stretch"
+          },
+          "default_value": "stretch",
+          "return_format": "value",
+          "multiple": 0,
+          "allow_null": 0,
+          "ui": 0,
+          "key": "field_stwp_el_columns_settings_alignment"
+        },
+        {
+          "name": "stwp-el-columns-settings__collapse",
+          "label": "Stack Below",
+          "type": "select",
+          "choices": {
+            "40": "40",
+            "48": "48",
+            "64": "64"
+          },
+          "default_value": "48",
+          "return_format": "value",
+          "multiple": 0,
+          "allow_null": 0,
+          "ui": 0,
+          "key": "field_stwp_el_columns_settings_collapse"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "stwp/el-columns"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 0
+}

@@ -2,6 +2,14 @@
   "$schema": "https://schemas.wp.org/wp/6.7/theme.json",
   "version": 3,
   "settings": {
+    "blocks": {
+      "stwp/el-wrapper": {
+        "spacing": {
+          "margin": true,
+          "padding": true
+        }
+      }
+    },
     "layout": {
       "contentSize": "1320px",
       "wideSize": "1440px"

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "stwp/el-column",
+  "title": "Elemental Column",
+  "category": "st-wp-starter",
+  "icon": "layout",
+  "textdomain": "st-wp-starter",
+  "allowedBlocks": [
+    "stwp/el-container",
+    "stwp/el-heading",
+    "stwp/el-text",
+    "stwp/el-columns",
+    "stwp/el-grid",
+    "stwp/el-content-with-image"
+  ],
+  "acf": {
+    "blockVersion": 3,
+    "renderTemplate": "block-render.php"
+  },
+  "supports": {
+    "jsx": true,
+    "html": false,
+    "align": false
+  },
+  "viewStyle": [
+    "file:./assets/css/view-style.min.css"
+  ],
+  "editorStyle": [
+    "file:./assets/css/editor-style.min.css"
+  ],
+  "parent": [
+    "stwp/el-columns"
+  ]
+}
