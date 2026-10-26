@@ -436,14 +436,35 @@ if ( function_exists( 'acf_register_block_type' )
 	/**
 	 * Setup acf gutenberg blocks
 	 *
+	 * Since 1.2.0, successfully registered blocks may supply a block-bootstrap.php
+	 * alongside block.json. It runs once to register early providers and hooks;
+	 * it must not render output. Symlinks cannot escape the trusted blocks root.
+	 *
 	 * @return void
 	 * @since 1.0.0
+	 * @since 1.2.0 Loads optional trusted block bootstraps after registration.
 	 */
 	function st_wp_core_register_blocks(): void {
-		$blocks = glob( get_stylesheet_directory() . '/blocks/*' );
-		foreach ( $blocks as $block ) {
-			if ( is_dir( $block ) ) {
-				register_block_type( $block );
+		$root = realpath( get_stylesheet_directory() . '/blocks' );
+		if ( false === $root ) {
+			return;
+		}
+		$blocks = glob( $root . '/*', GLOB_ONLYDIR );
+		foreach ( false === $blocks ? array() : $blocks as $block ) {
+			$directory = realpath( $block );
+			$metadata  = realpath( $block . '/block.json' );
+			if ( false === $directory || false === $metadata || ! is_file( $metadata )
+				|| ! str_starts_with( $directory, $root . DIRECTORY_SEPARATOR )
+				|| ! str_starts_with( $metadata, $directory . DIRECTORY_SEPARATOR ) ) {
+				continue;
+			}
+
+			$block_type = register_block_type( $directory );
+			$bootstrap  = realpath( $directory . '/block-bootstrap.php' );
+			if ( $block_type && false !== $bootstrap && is_file( $bootstrap )
+				&& str_starts_with( $bootstrap, $directory . DIRECTORY_SEPARATOR ) ) {
+				// $block_type is available to the block-local bootstrap, not global state.
+				require_once $bootstrap;
 			}
 		}
 	}
