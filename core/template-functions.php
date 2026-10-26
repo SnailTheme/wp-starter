@@ -194,6 +194,17 @@ if ( ! function_exists( 'st_wp_core_nav_menu_save_custom_fields' ) ) {
 	 */
 	function st_wp_core_nav_menu_save_custom_fields( $menu_id, $menu_item_db_id ) {
 		/*
+		 * Programmatic menu updates do not submit the custom-fields form. Return
+		 * before nonce validation so WP-CLI, imports, and integrations can use
+		 * wp_update_nav_menu_item() without impersonating a wp-admin request.
+		 * The image input is rendered for every item during a normal Save Menu
+		 * request, so its array is a reliable signal that this form was submitted.
+		 */
+		if ( ! isset( $_POST['menu-item-image'] ) && ! isset( $_POST['menu-item-unlink'] ) ) {
+			return;
+		}
+
+		/*
 		 * If this is the full "Save Menu" form submission, the nonce we want
 		 * **is present** and should be checked.
 		 * During the AJAX 'add-menu-item' call the field is absent, so we

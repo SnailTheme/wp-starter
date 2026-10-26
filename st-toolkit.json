@@ -1,7 +1,7 @@
 {
     "schema": 1,
     "ui_profile": "tailwind",
-    "ui_version": "1.0.0",
+    "ui_version": "1.1.0",
     "ui_locked": true,
     "css_entries": [
         "assets/styles/main.css",
@@ -14,13 +14,25 @@
         "assets/scss/_st-toolkit-profile.scss": "c0081b557b0333c5a2a95b77545dbd2d30ce97af9d13a07c3957639a8079a001",
         "assets/styles/base/_media.css": "d9a14bf2493f3eff2288bbf6554cef1b698013bc9fec2f3d07f85462b0d35027",
         "assets/styles/components/_components.css": "5935520726dc3bb2f2618774c90f01ed30548db7abc113e1f7443fd6c9ca8368",
-        "assets/styles/editor.css": "2a774295c0f9150e24146bf605a01ada85376ec27f815ea266b2493b7f4d5403",
+        "assets/styles/abstracts/_root.css": "6bc83d6b4b5ce19d2cc9c2f99af34efa32e20c78022400dacc82fbc80892d535",
+        "assets/styles/editor.css": "7202b2e3de88dd1a4e9b0018885db42f17babf79c27509bbd82680bb8c2cbacf",
         "assets/styles/editor/_overrides.css": "ae9b326209afdc6ba75189ed200997bc86fcec82c8774dec55d9707ca82bff61",
-        "assets/styles/main.css": "2d71f5e1626f6345adcca369e779e54fc49e3576fea290ace62b981173385723",
+        "assets/styles/main.css": "c942ac51b4a3774050008f54650d466bad8cffe365cbccefc5d8c029260c4d79",
         "assets/styles/styles-enqueue/auto-enqueued-style.css": "1fd98de52cde0c6cab7604645e514948fa5c7d80257d0da9368bf8e633ddbc06",
         "assets/styles/styles-register/auto-registered-style.css": "c14743aaaea4f0517392316b44646397a8c365a53fcdd7e54c4f8225e6c57da3",
-        "assets/styles/theme/_theme.css": "6bd807b51f0bd210fe7e634d7c7faf5221d537b84c80b1a445020ceb843b0b52",
         "assets/styles/utilities/_accessibility.css": "4200d801f3c148f3886109c557458fdddda8b2be201c7eac1dad7a4cf16e6d22",
         "assets/styles/utilities/_alignments.css": "62bbfbb22bb5bba38c72949113c1df17e3b913a29f06acf7a376d4e890c2159e"
+    },
+    "components": {
+        "mega-menu": {
+            "version": "1.1.1",
+            "ui_profile": "tailwind",
+            "files": {
+                "assets/scripts/scripts-register/toolkit/mega-menu.js": "747a4a8219bab5786c5795a35c06792674445ecfd56aa27717fafb069ff1e629",
+                "assets/scss/styles-register/toolkit/mega-menu.scss": "5e61bde79a648a2b42e2c7dfc5b7432c9bdf890ad741017c78b25d2bd56e065d",
+                "assets/scss/styles-register/toolkit/mega-menu/_component.scss": "b21b6616953be692f46cc5e683bbaaa3af4047f96ad7ff9b5a28ed9c63105ad3",
+                "inc/components/toolkit/mega-menu.php": "3cf2bcec34ae5882224691b85a20d25b4a308d09c3347a3ecfab666da8828cfd"
+            }
+        }
     }
 }

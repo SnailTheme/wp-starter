@@ -6,13 +6,15 @@
  * config. Generated assets and toolkit backups are excluded so their writes
  * cannot trigger a development-watch rebuild loop.
  *
- * Underscore-prefixed imports are partials and do not compile independently.
+ * Underscore-prefixed imports remain separate source modules but are bundled
+ * into this entry. Create a non-underscored file under styles-register or
+ * styles-enqueue only when WordPress needs a separate stylesheet.
  */
 @import "tailwindcss" source("../../");
 @source not "../../assets/css";
 @source not "../../assets/js";
 @source not "../../.st-toolkit";
-@import "./theme/_theme.css";
+@import "./abstracts/_root.css";
 @import "./base/_media.css";
 @import "./components/_components.css";
 @import "./utilities/_accessibility.css";

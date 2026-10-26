@@ -1,0 +1,17 @@
+/**
+ * Shared Tailwind design tokens and root custom properties.
+ *
+ * Keep this file limited to variables used by both the front end and editor.
+ * Use `@theme` for tokens that should generate Tailwind utilities. Use `:root`
+ * for runtime-only custom properties that do not need corresponding utilities.
+ *
+ * Examples:
+ *
+ * @theme {
+ *     --color-brand: oklch(0.62 0.17 250);
+ * }
+ *
+ * :root {
+ *     --site-header-height: 5rem;
+ * }
+ */

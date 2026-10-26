@@ -54,8 +54,19 @@ if ( ! function_exists( 'st_wp_core_load_components' ) ) {
 			return;
 		}
 
-		$component_files = glob( trailingslashit( $directory ) . '*.php' );
-		$component_files = is_array( $component_files ) ? $component_files : array();
+		$component_files = array();
+		$directory_files = new RecursiveIteratorIterator(
+			new RecursiveDirectoryIterator(
+				$directory,
+				FilesystemIterator::SKIP_DOTS
+			)
+		);
+
+		foreach ( $directory_files as $directory_file ) {
+			if ( $directory_file->isFile() && 'php' === strtolower( $directory_file->getExtension() ) ) {
+				$component_files[] = $directory_file->getPathname();
+			}
+		}
 
 		/**
 		 * Filters component PHP files before core loads them.

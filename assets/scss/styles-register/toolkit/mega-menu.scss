@@ -1,0 +1,15 @@
+/**
+ * Toolkit mega-menu entry point.
+ *
+ * Adjust these values before the first build when a project needs a different
+ * navigation breakpoint, compact-search threshold, drawer width, or content
+ * measure. JavaScript reads the compiled breakpoint sentinel, so responsive
+ * behavior cannot drift from these Sass settings.
+ */
+
+@use "mega-menu/component" with (
+	$navigation-breakpoint: 64rem,
+	$compact-search-breakpoint: 35.5rem,
+	$drawer-width: 26rem,
+	$container-width: 82.5rem
+);
