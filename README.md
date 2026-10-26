@@ -19,9 +19,9 @@ some of the other more interesting things you'll find here:
 * Some small tweaks in `inc/template-functions.php` that can improve your theming experience.
 * A split between `/core/` for shared, updateable logic and `/inc/` for project overrides and theme-owned behavior.
 * Theme scripts live in `/assets/scripts/` and compile to `/assets/js/`, so your front-end behavior stays organized alongside the rest of the asset pipeline.
-* 2 sample layouts in `/assets/scss/layouts/` made using CSS Grid for a sidebar on either side of your content. Just uncomment the layout of your choice in `/assets/scss/main.scss`.
-Note: `.no-sidebar` styles are automatically loaded.
-* Full support for `WooCommerce plugin` integration with hooks in `inc/woocommerce.php`, with matching theme styles in `/assets/scss/woocommerce.scss` and compiled output in `/assets/css/woocommerce.min.css`.
+* A minimal default style foundation, with optional `blueprint` and `tailwind` UI profiles available through the toolkit.
+* Full support for `WooCommerce plugin` integration with hooks in `inc/woocommerce.php`; project-specific shop styles can be added by the selected UI profile or the developer.
+* Toolkit catalogs for curated blocks and reusable components, installed only when a project needs them.
 * Licensed under GPLv2 or later. :) Use it to make something cool.
 
 Installation
@@ -48,11 +48,17 @@ development notes:
 $ composer install
 $ npm install
 $ composer st-toolkit init
+$ composer toolkit:ui-list
+$ composer toolkit:ui-install bare
 ```
 
 `composer st-toolkit init` installs `AGENTS.md` and `.agents/` with local
 theme development notes. Those files are ignored by Git by default so they can
 guide development without being committed or deployed.
+
+Choose `bare`, `blueprint`, or `tailwind` before starting project styling. The
+toolkit locks this initial UI choice because replacing it later removes the old
+managed scaffold before installing the new one.
 
 Now you're ready to go! The next step is easy to say, but harder to do: make an awesome WordPress theme. :)
 

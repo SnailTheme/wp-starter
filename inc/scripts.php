@@ -117,39 +117,34 @@ add_action( 'st_wp_core_enqueue_scripts', 'st_wp_starter_theme_scripts', 5 );
 
 if ( ! function_exists( 'st_wp_starter_editor_styles' ) ) {
 	/**
-	 * Enqueue theme styles for the WordPress post/page editor canvas.
+	 * Register theme styles for the WordPress post/page editor canvas.
 	 *
-	 * Block API v3 uses an iframe for the editor canvas. Editor content styles
-	 * must load through block asset APIs, not through `admin_enqueue_scripts`,
-	 * otherwise WordPress warns that the stylesheet was added incorrectly.
+	 * `add_editor_style()` passes the compiled stylesheet through WordPress's
+	 * editor-style pipeline. WordPress scopes its selectors to the editor canvas
+	 * and loads them correctly in both iframed Block API v3 editors and classic
+	 * editor contexts. Do not enqueue this stylesheet directly: block assets are
+	 * also loaded outside the iframe for compatibility and global resets would
+	 * otherwise affect the surrounding wp-admin interface.
 	 *
 	 * @return void
 	 */
 	function st_wp_starter_editor_styles(): void {
-		if ( ! is_admin() ) {
-			return;
-		}
-
 		if ( ! st_wp_starter_asset_exists( '/assets/css/editor.min.css' ) ) {
 			return;
 		}
 
-		wp_enqueue_style(
-			'st-wp-starter-editor',
-			get_template_directory_uri() . '/assets/css/editor.min.css',
-			array(),
-			st_wp_starter_get_asset_version( '/assets/css/editor.min.css' )
-		);
+		add_theme_support( 'editor-styles' );
+		add_editor_style( 'assets/css/editor.min.css' );
 	}
 }
-add_action( 'enqueue_block_assets', 'st_wp_starter_editor_styles' );
+add_action( 'after_setup_theme', 'st_wp_starter_editor_styles', 20 );
 
 if ( ! function_exists( 'st_wp_starter_admin_scripts' ) ) {
 	/**
 	 * Enqueue project-owned wp-admin behavior.
 	 *
-	 * Editor canvas styles load from `st_wp_starter_editor_styles()` via
-	 * `enqueue_block_assets`. This callback is only for wp-admin UI scripts.
+	 * Editor canvas styles are registered separately with `add_editor_style()`.
+	 * This callback is only for wp-admin UI scripts.
 	 *
 	 * @return void
 	 */

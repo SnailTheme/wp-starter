@@ -18,14 +18,17 @@
     "php": ">=8.2"
   },
   "require-dev": {
-    "snailtheme/wp-starter-toolkit": "^1.0",
-    "squizlabs/php_codesniffer": "^3.9",
+    "snailtheme/wp-starter-toolkit": "^1.1",
+    "squizlabs/php_codesniffer": "^3.13.6",
     "wp-coding-standards/wpcs": "dev-main",
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
     "php-parallel-lint/php-parallel-lint": "^1.4",
     "wp-cli/wp-cli": "^2.9",
     "wp-cli/i18n-command": "^2.3",
     "symfony/var-dumper": "^7.2"
+  },
+  "conflict": {
+    "phpcsstandards/phpcsutils": "<1.2.3"
   },
   "repositories": [
     {
@@ -48,6 +51,13 @@
     "toolkit:blocks-list": "@php vendor/bin/st-toolkit blocks:list",
     "toolkit:blocks-install": "@php vendor/bin/st-toolkit blocks:install --theme=.",
     "toolkit:blocks-install:dry-run": "@php vendor/bin/st-toolkit blocks:install --theme=. --dry-run",
+    "toolkit:ui-list": "@php vendor/bin/st-toolkit ui:list",
+    "toolkit:ui-status": "@php vendor/bin/st-toolkit ui:status --theme=.",
+    "toolkit:ui-install": "@php vendor/bin/st-toolkit ui:install --theme=.",
+    "toolkit:ui-install:dry-run": "@php vendor/bin/st-toolkit ui:install --theme=. --dry-run",
+    "toolkit:ui-replace": "@php vendor/bin/st-toolkit ui:install --theme=. --replace --force",
+    "toolkit:components-list": "@php vendor/bin/st-toolkit components:list",
+    "toolkit:components-install": "@php vendor/bin/st-toolkit components:install --theme=.",
     "make-pot": [
       "@php vendor/wp-cli/wp-cli/php/boot-fs.php i18n make-pot . languages/st-wp-starter.pot --slug=st-wp-starter --domain=st-wp-starter",
       "@php core/tools/normalize-pot.php languages/st-wp-starter.pot"
