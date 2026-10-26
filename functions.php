@@ -18,7 +18,7 @@ if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
 
 // Define theme version.
 if ( ! defined( 'ST_WP_STARTER_VERSION' ) ) {
-	define( 'ST_WP_STARTER_VERSION', '1.1.0' );
+	define( 'ST_WP_STARTER_VERSION', '1.2.0' );
 }
 
 // Define theme path constant.

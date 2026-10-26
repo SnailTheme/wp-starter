@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c66ec4cfe5f9988a4f4e90dd0d10b9f",
+    "content-hash": "8f774eecddcc595fe4bf1d980e826630",
     "packages": [],
     "packages-dev": [
         {
@@ -734,16 +734,16 @@
         },
         {
             "name": "snailtheme/wp-starter-toolkit",
-            "version": "dev-next",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnailTheme/wp-starter-toolkit.git",
-                "reference": "c4243656873f2115630cda1020f0530237c18e00"
+                "reference": "faf0e2d43eba7cc81dc13e51c4f65fb06b5d52ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/c4243656873f2115630cda1020f0530237c18e00",
-                "reference": "c4243656873f2115630cda1020f0530237c18e00",
+                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/faf0e2d43eba7cc81dc13e51c4f65fb06b5d52ef",
+                "reference": "faf0e2d43eba7cc81dc13e51c4f65fb06b5d52ef",
                 "shasum": ""
             },
             "require": {
@@ -786,10 +786,10 @@
             "description": "Developer toolkit for ST WP Starter core updates, UI profiles, curated blocks, and reusable components.",
             "homepage": "https://www.snailtheme.com/",
             "support": {
-                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/next",
+                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.3.0",
                 "issues": "https://github.com/SnailTheme/wp-starter-toolkit/issues"
             },
-            "time": "2026-10-26T18:18:32+00:00"
+            "time": "2026-10-26T19:41:37+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -2217,7 +2217,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "snailtheme/wp-starter-toolkit": 20,
         "wp-coding-standards/wpcs": 20
     },
     "prefer-stable": false,
