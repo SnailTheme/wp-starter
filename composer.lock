@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e7c1818a1f0b14fc80f2da033f805a2",
+    "content-hash": "2d189040d27b0d5c1688f1c865bf9047",
     "packages": [],
     "packages-dev": [
         {
@@ -734,16 +734,16 @@
         },
         {
             "name": "snailtheme/wp-starter-toolkit",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnailTheme/wp-starter-toolkit.git",
-                "reference": "86d44e7e0a9f7300b9159c305027b7a1d44eda64"
+                "reference": "21a8fdd5b1e225fc1f55b4e705c9590b31892f15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/86d44e7e0a9f7300b9159c305027b7a1d44eda64",
-                "reference": "86d44e7e0a9f7300b9159c305027b7a1d44eda64",
+                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/21a8fdd5b1e225fc1f55b4e705c9590b31892f15",
+                "reference": "21a8fdd5b1e225fc1f55b4e705c9590b31892f15",
                 "shasum": ""
             },
             "require": {
@@ -769,7 +769,9 @@
                     "@php tests/bundles.php",
                     "@php tests/schema.php",
                     "@php tests/elementals-harness-safety.php",
-                    "@php tests/agent-docs.php"
+                    "@php tests/agent-docs.php",
+                    "@php tests/core-manifest.php",
+                    "@php tests/ui-profile-maintainer.php"
                 ],
                 "test:bundles": [
                     "@php tests/bundles.php"
@@ -779,6 +781,10 @@
                 ],
                 "test:agent-docs": [
                     "@php tests/agent-docs.php"
+                ],
+                "test:maintainers": [
+                    "@php tests/core-manifest.php",
+                    "@php tests/ui-profile-maintainer.php"
                 ]
             },
             "license": [
@@ -787,10 +793,10 @@
             "description": "Developer toolkit for ST WP Starter core updates, UI profiles, curated blocks, and reusable components.",
             "homepage": "https://www.snailtheme.com/",
             "support": {
-                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.4.0",
+                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.5.0",
                 "issues": "https://github.com/SnailTheme/wp-starter-toolkit/issues"
             },
-            "time": "2026-10-26T22:03:43+00:00"
+            "time": "2026-10-27T00:00:32+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
