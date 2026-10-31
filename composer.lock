@@ -734,16 +734,16 @@
         },
         {
             "name": "snailtheme/wp-starter-toolkit",
-            "version": "v1.5.0",
+            "version": "v1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnailTheme/wp-starter-toolkit.git",
-                "reference": "21a8fdd5b1e225fc1f55b4e705c9590b31892f15"
+                "reference": "a196516aaebedef357da4c6fd746e1d787458d6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/21a8fdd5b1e225fc1f55b4e705c9590b31892f15",
-                "reference": "21a8fdd5b1e225fc1f55b4e705c9590b31892f15",
+                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/a196516aaebedef357da4c6fd746e1d787458d6e",
+                "reference": "a196516aaebedef357da4c6fd746e1d787458d6e",
                 "shasum": ""
             },
             "require": {
@@ -793,10 +793,10 @@
             "description": "Developer toolkit for ST WP Starter core updates, UI profiles, curated blocks, and reusable components.",
             "homepage": "https://www.snailtheme.com/",
             "support": {
-                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.5.0",
+                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.5.1",
                 "issues": "https://github.com/SnailTheme/wp-starter-toolkit/issues"
             },
-            "time": "2026-10-27T00:00:32+00:00"
+            "time": "2026-10-31T16:57:00+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
