@@ -16,9 +16,9 @@ if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
 	require_once get_template_directory() . '/vendor/autoload.php';
 }
 
-// Define theme version.
+// Project theme version; maintained by the developer, not the shared-core updater.
 if ( ! defined( 'ST_WP_STARTER_VERSION' ) ) {
-	define( 'ST_WP_STARTER_VERSION', '1.2.0' );
+	define( 'ST_WP_STARTER_VERSION', '1.0.0' );
 }
 
 // Define theme path constant.
