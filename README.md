@@ -23,7 +23,7 @@ as your project evolves. The separate `ST_WP_CORE_VERSION` in
 
 Requirements:
 
-- WordPress 7.0+ and PHP 8.2+.
+- WordPress 7.0+ and PHP 8.3+.
 - [Advanced Custom Fields PRO 6.6+](https://www.advancedcustomfields.com/pro/)
   for the ACF integrations and Block API v3 workflow. This is a paid plugin,
   installed separately.
@@ -339,6 +339,15 @@ Run `composer make-pot` after PHP changes, including changes to translation
 source-line references. Include generated assets and the updated POT in the
 project commit. Use `npm audit` and `composer audit --locked` for dependency
 security checks.
+
+Starter maintenance tests the minimum PHP branch, currently 8.3. The weekly
+PHP workflow checks its security-support lifetime and keeps `style.css`,
+Composer requirements, the platform lock and CI aligned. It warns within 60
+days of EOL and fails once a newer baseline is required. Maintain the calendar
+in `.github/php-support.json` from [PHP's supported versions](https://www.php.net/supported-versions.php).
+PHP 8.3 reaches security EOL on December 31, 2027; PHP 8.4 becomes the minimum
+after that date. This is a source-repository maintenance check, not an automatic
+rewrite of generated client projects.
 
 For detailed conventions and examples, see the
 [feature documentation](https://wp-starter.snailtheme.com/features/) and
