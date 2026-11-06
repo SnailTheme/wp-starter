@@ -48,7 +48,7 @@ if ( ! function_exists( 'st_wp_starter_jetpack_setup' ) ) {
 		add_theme_support(
 			'infinite-scroll',
 			array(
-				'container' => 'main',
+				'container' => 'primary',
 				'render'    => 'st_wp_starter_infinite_scroll_render',
 				'footer'    => 'page',
 			)

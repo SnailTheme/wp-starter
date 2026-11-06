@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Define the reusable core package version. The updater checks this value.
 if ( ! defined( 'ST_WP_CORE_VERSION' ) ) {
-	define( 'ST_WP_CORE_VERSION', '1.2.0' );
+	define( 'ST_WP_CORE_VERSION', '1.2.1' );
 }
 
 // Absolute filesystem path to this /core/ directory.

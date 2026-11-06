@@ -4,9 +4,10 @@ Theme URI: https://github.com/snailtheme/wp-starter/
 Author: SnailTheme
 Author URI: https://www.snailtheme.com/
 Description: Starter Theme for WordPress
-Version: 1.2.0
-Tested up to: 7.0
-Requires PHP: 8.2
+Version: 1.0.0
+Requires at least: 7.0
+Tested up to: 7.1
+Requires PHP: 8.3
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: st-wp-starter
@@ -14,6 +15,9 @@ Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-com
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned.
+
+Starter framework developed by SnailTheme.
+https://wp-starter.snailtheme.com/
 
 ST WP Starter is based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
