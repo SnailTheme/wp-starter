@@ -1,0 +1,8 @@
+/**
+ * Always-on visibility safeguard for optional animation markup.
+ *
+ * The asset registry enqueues this small stylesheet for every UI profile.
+ * Keep it outside profile-owned scaffolds so disabling AnimateCSS or choosing
+ * another UI cannot leave saved reveal content hidden by an opacity utility.
+ */
+@use "../styles-register/plugins/animatecss/reveal";

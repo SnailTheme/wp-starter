@@ -164,6 +164,13 @@ project enqueue logic. Its local Sass modules let you select individual
 animations rather than importing the whole library. Reusable blocks do not
 require animation classes to display their content.
 
+Reveal animations initialize once within `.enter-view` wrappers. Usable styles
+and observer setup are checked before hiding an element for its entrance;
+unsupported or disabled animation leaves content readable. A small auto-enqueued
+guard also protects legacy reveal markup independently of the selected UI.
+Late initialization does not hide already-displayed on-screen content. Dynamic
+content can use `window.stWpReveal.init(subtree)` and `destroy(subtree)`.
+
 ## Template And Developer Helpers
 
 Shared `st_wp_core_*` APIs keep their names in generated themes. Project-owned

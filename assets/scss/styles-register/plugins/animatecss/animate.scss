@@ -17,6 +17,7 @@
 
 @use "source/vars";
 @use "source/base";
+@use "reveal";
 
 /* Attention seekers. */
 @use "source/attention_seekers/bounce";
@@ -147,7 +148,14 @@
 @use "source/sliding_exits/slideOutRight";
 @use "source/sliding_exits/slideOutUp";
 
-// Keep elements hidden until the theme's animation runtime reveals them.
-.opacity-0 {
+// This state is JS-owned, never saved in markup. Baseline content stays visible
+// until CSS/keyframes and observer setup have both succeeded.
+.animate__animated {
+	--st-wp-reveal-enabled: 1;
+}
+
+.animate__animated.st-wp-reveal--pending {
+	animation: none !important;
 	opacity: 0 !important;
+	transition: none !important;
 }
