@@ -18,16 +18,24 @@ if ( file_exists( get_template_directory() . '/inc/template-tags.php' ) ) {
 if ( ! function_exists( 'st_wp_core_generate_img' ) ) :
 
 	/**
-	 * Function generates retina-ready image tags.
-	 *  - Accepts either an attachment ID or ACF Image array.
-	 *  - Uses array data to avoid extra DB calls when possible.
+	 * Return figure and image markup for a WordPress attachment.
 	 *
-	 * @param int|array $attachment attachment ID or ACF Pro Image Array.
-	 * @param string    $size attachment size.
-	 * @param string    $fetch_priority image fetch priority instruction.
-	 * @param string    $classes any extra classes.
+	 * Accepts an attachment ID or an ACF Image array containing an ID. Only the
+	 * array's ID is used; WordPress attachment and metadata APIs supply the image
+	 * source, dimensions, alt text and responsive attributes. These calls may
+	 * perform database lookups, including when an ACF array is supplied.
 	 *
-	 * @return string
+	 * Raster images include srcset and sizes only when WordPress supplies a
+	 * srcset. Available attachment sizes determine the candidates; high-density
+	 * (retina) coverage is not guaranteed. SVG images omit dimensions, srcset
+	 * and sizes. This helper returns markup without echoing it.
+	 *
+	 * @param int|array $attachment     Attachment ID or ACF Image array with an ID key.
+	 * @param string    $size           Registered attachment size. Default 'full'.
+	 * @param string    $fetch_priority Image fetch priority. Default 'low'.
+	 * @param string    $classes        Additional figure classes.
+	 *
+	 * @return string Image markup, or an empty string for an empty ID or unavailable source.
 	 */
 	function st_wp_core_generate_img( $attachment, $size = 'full', $fetch_priority = 'low', $classes = '' ): string {
 		if ( is_array( $attachment ) && isset( $attachment['ID'] ) ) {

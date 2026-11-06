@@ -1,6 +1,9 @@
 name: PHP Validation
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 7 * * 1'
   push:
     branches:
       - main
@@ -24,8 +27,13 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '8.3'
           tools: composer:v2
+
+      - name: Check PHP support policy
+        run: |
+          php .github/tests/php-support.php
+          php .github/scripts/check-php-support.php
 
       - name: Validate composer.json
         run: composer validate --strict
@@ -33,11 +41,17 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
+      - name: Audit Composer dependencies
+        run: composer audit --locked
+
       - name: Lint PHP
         run: composer lint:php
 
       - name: Validate WordPress coding standards
         run: composer lint:wpcs
+
+      - name: Verify Jetpack integration
+        run: php .github/tests/jetpack.php
 
       - name: Preserve committed POT file
         run: cp languages/st-wp-starter.pot /tmp/st-wp-starter.committed.pot
