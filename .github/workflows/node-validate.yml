@@ -39,6 +39,11 @@ jobs:
       - name: Audit npm dependencies
         run: npm audit
 
+      - name: Verify animation reveal lifecycle
+        run: |
+          node .github/tests/animation-reveal.cjs
+          node .github/tests/animation-reveal.cjs assets/js/scripts-register/plugins/animatecss/animate.min.js
+
       - name: Build generated assets
         run: npm run build
 
