@@ -993,6 +993,111 @@ test('new descendants in an entered wrapper run once without replaying completed
     assert.equal(e.timers.jobs.size, 0);
 });
 
+for (const rootSelf of [false, true]) {
+    test(`historical entered wrapper waits for fresh intersection for all new siblings; rootSelf=${rootSelf}`, () => {
+        const e = browser();
+        const { wrapper, element } = e.fixture();
+        if (rootSelf) {
+            wrapper.classList.add('animate__animated', 'opacity-0');
+            wrapper.dataset.animateClass = TOKEN;
+        }
+        e.boot();
+        e.intersect(wrapper);
+        running(e, element);
+        animationEvent(element);
+        if (rootSelf) animationEvent(wrapper);
+        const previousStarts = element.selectedTransitions;
+        const later = [e.item(wrapper), e.item(wrapper), e.item(wrapper)];
+        e.position(wrapper, 1200);
+        const observations = e.observeStates.length;
+        e.api().init(wrapper);
+        for (const child of later) pending(e, child);
+        assert.equal(e.observeStates.length, observations + 1, 'One fresh observation per wrapper/batch');
+        e.api().init(wrapper);
+        e.api().init(later[0]);
+        assert.equal(e.observeStates.length, observations + 1, 'Repeated/scoped initialization does not reobserve');
+        e.intersect(wrapper, false);
+        for (const child of later) pending(e, child);
+        e.intersect(wrapper);
+        for (const child of later) running(e, child);
+        assert.equal(element.selectedTransitions, previousStarts, 'Completed sibling never replays');
+        for (const child of later) animationEvent(child);
+        e.api().init(wrapper, {beforePaint: true});
+        for (const child of later) settled(e, child);
+        assert.equal(e.targets().size, 0);
+        assert.equal(e.timers.jobs.size, 0);
+    });
+}
+
+for (const onscreen of [false, true]) {
+    test(`new children of a still-observed wrapper request a current result; onscreen=${onscreen}`, () => {
+        const e = browser();
+        const { wrapper, element } = e.fixture();
+        e.boot();
+        e.intersect(wrapper);
+        running(e, element);
+        const previousStarts = element.selectedTransitions;
+        const later = [e.item(wrapper), e.item(wrapper)];
+        e.position(wrapper, onscreen ? 200 : 1200);
+        const observations = e.observeStates.length;
+        e.api().init(wrapper, {beforePaint: true});
+        for (const child of later) pending(e, child);
+        assert.equal(e.observeStates.length, observations + 1, 'Existing observation is refreshed once for new content');
+        assert.equal(e.observers.length, 1, 'Reuse the observer, not additional observers');
+        e.intersect(wrapper, false);
+        for (const child of later) pending(e, child);
+        e.intersect(wrapper);
+        for (const child of later) running(e, child);
+        assert.equal(element.selectedTransitions, previousStarts, 'Running sibling never restarts');
+        for (const child of [element, ...later]) animationEvent(child);
+        assert.equal(e.targets().size, 0);
+        assert.equal(e.timers.jobs.size, 0);
+    });
+}
+
+test('nested entered wrappers enroll new children only with their nearest wrapper', () => {
+    const e = browser();
+    const outer = e.fixture();
+    const inner = e.create('enter-view', outer.wrapper);
+    const original = e.item(inner);
+    e.boot();
+    e.intersect(outer.wrapper);
+    animationEvent(outer.element);
+    pending(e, original);
+    e.intersect(inner);
+    animationEvent(original);
+    const previousStarts = [outer.element.selectedTransitions, original.selectedTransitions];
+    const later = [e.item(inner), e.item(inner)];
+    e.position(inner, 1200);
+    e.api().init(outer.wrapper);
+    for (const child of later) pending(e, child);
+    assert.deepEqual([...e.targets()], [inner]);
+    e.intersect(outer.wrapper);
+    for (const child of later) pending(e, child);
+    e.intersect(inner);
+    for (const child of later) running(e, child);
+    assert.deepEqual([outer.element.selectedTransitions, original.selectedTransitions], previousStarts);
+    for (const child of later) animationEvent(child);
+    e.api().init(outer.wrapper, {beforePaint: true});
+    assert.equal(e.targets().size, 0);
+    assert.equal(e.timers.jobs.size, 0);
+});
+
+test('refresh observation failure releases the original and all newly enrolled content', () => {
+    const e = browser();
+    const { wrapper, element } = e.fixture();
+    e.boot();
+    e.intersect(wrapper);
+    running(e, element);
+    const later = [e.item(wrapper), e.item(wrapper)];
+    e.position(wrapper, 1200);
+    e.observers[0].unobserve = () => { throw new Error('Refresh failed'); };
+    e.api().init(wrapper);
+    for (const child of [element, ...later]) settled(e, child);
+    assert.equal(e.targets().size, 0);
+    assert.equal(e.timers.jobs.size, 0);
+});
+
 for (const options of [{ noObserver: true }, { constructorThrows: true },
     { observeThrowsAt: 1 }, { observeThrowsAt: 2 }]) {
     test(`observer failure is visible and cleans partial enrollment: ${JSON.stringify(options)}`, () => {

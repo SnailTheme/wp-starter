@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c451ae702c867f7ecaadc29d714f0844",
+    "content-hash": "5fbdfb797a6e32c054661287d07f8ab7",
     "packages": [],
     "packages-dev": [
         {
@@ -734,16 +734,16 @@
         },
         {
             "name": "snailtheme/wp-starter-toolkit",
-            "version": "v1.5.5",
+            "version": "v1.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnailTheme/wp-starter-toolkit.git",
-                "reference": "3041ea62c59595724fc93b695a8f23375c7a79db"
+                "reference": "9462b0169412bbb73d3b3cf36397cc99d89887b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/3041ea62c59595724fc93b695a8f23375c7a79db",
-                "reference": "3041ea62c59595724fc93b695a8f23375c7a79db",
+                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/9462b0169412bbb73d3b3cf36397cc99d89887b8",
+                "reference": "9462b0169412bbb73d3b3cf36397cc99d89887b8",
                 "shasum": ""
             },
             "require": {
@@ -767,6 +767,7 @@
                 "test:acceptance": [
                     "@php tests/filesystem-security.php",
                     "@php tests/acceptance.php",
+                    "@php tests/component-scaffolding.php",
                     "@php tests/image-helpers.php",
                     "@php tests/bundles.php",
                     "@php tests/schema.php",
@@ -777,6 +778,9 @@
                 ],
                 "test:bundles": [
                     "@php tests/bundles.php"
+                ],
+                "test:components": [
+                    "@php tests/component-scaffolding.php"
                 ],
                 "test:elementals-harness": [
                     "@php tests/elementals-harness-safety.php"
@@ -795,10 +799,10 @@
             "description": "Developer toolkit for ST WP Starter core updates, UI profiles, curated blocks, and reusable components.",
             "homepage": "https://www.snailtheme.com/",
             "support": {
-                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.5.5",
+                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.5.6",
                 "issues": "https://github.com/SnailTheme/wp-starter-toolkit/issues"
             },
-            "time": "2026-11-06T19:43:20+00:00"
+            "time": "2026-11-06T20:51:07+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
