@@ -8,8 +8,8 @@
  *
  * CORE TEMPLATE TAGS:
  * The following functions remain in /core/template-tags.php and should not be modified:
- * - st_wp_core_generate_img() - Generates retina-ready image tags
- * - st_wp_core_generate_sprite_svg() - Outputs SVG icons from sprite
+ * - st_wp_core_generate_img() - Returns attachment markup using WordPress image APIs
+ * - st_wp_core_generate_sprite_svg() - Builds SVG icons from the theme sprite
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
