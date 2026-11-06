@@ -226,6 +226,7 @@
         if (typeof root.matches === 'function' && root.matches('.animate__animated')) {
             elements.unshift(root);
         }
+        const refreshedWrappers = new Set();
         for (const element of elements) {
             if (element.ownerDocument !== document || completed.has(element) || records.has(element)) {
                 continue;
@@ -262,10 +263,15 @@
                 const alreadyObserved = wrappers.has(wrapper);
                 group.add(element);
                 wrappers.set(wrapper, group);
-                if (!alreadyObserved) {
+                if (!refreshedWrappers.has(wrapper)) {
+                    // `entered` records history, not current intersection. A
+                    // fresh subscription also delivers a result for new content
+                    // in an already-visible group whose threshold did not change.
+                    if (alreadyObserved) {
+                        activeObserver.unobserve(wrapper);
+                    }
                     activeObserver.observe(wrapper);
-                } else if (wrapper.classList.contains('entered')) {
-                    start(element);
+                    refreshedWrappers.add(wrapper);
                 }
                 if (records.has(element) && !record.running) {
                     element.setAttribute('data-st-wp-reveal', 'pending');

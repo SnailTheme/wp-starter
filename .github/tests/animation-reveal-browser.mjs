@@ -4,6 +4,7 @@
  * if it is not locally resolvable. ST_BROWSER_EXECUTABLE selects Brave or another
  * Chromium executable; otherwise Playwright uses its installed Chromium.
  * Usage: node .github/tests/animation-reveal-browser.mjs THEME [BLUEPRINT TAILWIND]
+ * ST_REVEAL_TEST_FILTER optionally selects test names; omit for a full pass.
  * No network, WordPress, database, or project-content writes are needed.
  */
 import assert from 'node:assert/strict';
@@ -11,6 +12,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 const {chromium} = await import(process.env.ST_PLAYWRIGHT_MODULE || 'playwright');
 const roots = process.argv.slice(2);
+const testFilter = process.env.ST_REVEAL_TEST_FILTER ? new RegExp(process.env.ST_REVEAL_TEST_FILTER) : null;
 if (!roots.length) throw new Error('Pass at least one built theme directory.');
 const browser = await chromium.launch({
     headless: true,
@@ -59,6 +61,7 @@ try {
         const built = await read('assets/js/scripts-register/plugins/animatecss/animate.min.js');
 
         async function run(name, callback, options = {}) {
+            if (testFilter && !testFilter.test(name)) return;
             const context = await browser.newContext({viewport:{width:1024,height:600}, ...options});
             const page = await context.newPage();
             const errors = [];
@@ -282,6 +285,89 @@ try {
             await page.evaluate(()=>window.__intersect());
             await visible(page,'fresh');
         });
+        await run('native observer waits for re-entry of a historically entered wrapper', async ({page,mount}) => {
+            const counter='window.__starts={};document.addEventListener("animationstart",event=>{const id=event.target.id;window.__starts[id]=(window.__starts[id]||0)+1;});';
+            await mount({offscreen:true,before:counter});
+            await pending(page);
+            await page.locator('#item').scrollIntoViewIfNeeded();
+            await visible(page);
+            await page.evaluate(()=>window.scrollTo(0,0));
+            await page.waitForFunction(()=>document.getElementById('wrap-item').getBoundingClientRect().top>=innerHeight);
+            const initial=await page.evaluate(()=>{
+                const wrapper=document.getElementById('wrap-item');
+                for(const id of ['new-first','new-second','new-third']){
+                    const child=document.createElement('div');child.id=id;child.className='animate__animated opacity-0';child.dataset.animateClass='animate__fadeIn';child.textContent=id;wrapper.append(child);
+                }
+                window.stWpReveal.init(wrapper);window.stWpReveal.init(wrapper);window.stWpReveal.init(document.getElementById('new-second'));
+                return ['new-first','new-second','new-third'].map(id=>document.getElementById(id).dataset.stWpReveal);
+            });
+            check(initial.every(state=>state==='pending'),'Historical entered state started a new child off screen: '+JSON.stringify(initial));
+            await page.waitForTimeout(180);
+            for(const id of ['new-first','new-second','new-third'])await pending(page,id);
+            check(await page.evaluate(()=>['new-first','new-second','new-third'].every(id=>!window.__starts[id])),'An off-screen child emitted animationstart');
+            await page.locator('#new-second').scrollIntoViewIfNeeded();
+            for(const id of ['new-first','new-second','new-third'])await visible(page,id);
+            check(await page.evaluate(()=>['item','new-first','new-second','new-third'].every(id=>window.__starts[id]===1)),'New siblings failed to reveal exactly once or original replayed');
+        });
+        await run('native observer refreshes visible groups for fresh before-paint children', async ({page,mount}) => {
+            await mount({offscreen:true,extraCSS:'#item{--animate-duration:8s}'});
+            await pending(page);await page.locator('#item').scrollIntoViewIfNeeded();
+            await page.waitForFunction(()=>document.getElementById('item').dataset.stWpReveal==='running');
+            const initial=await page.evaluate(()=>{
+                const wrapper=document.getElementById('wrap-item');window.__originalEffect=document.getElementById('item').getAnimations()[0];
+                for(const id of ['fresh-first','fresh-second']){
+                    const child=document.createElement('div');child.id=id;child.className='animate__animated';child.dataset.animateClass='animate__fadeIn';child.textContent=id;wrapper.append(child);
+                }
+                window.stWpReveal.init(wrapper,{beforePaint:true});
+                return ['fresh-first','fresh-second'].map(id=>document.getElementById(id).dataset.stWpReveal);
+            });
+            check(initial.every(state=>state==='pending'),'Visible insertion reused historical state instead of requesting a current result');
+            for(const id of ['fresh-first','fresh-second'])await visible(page,id);
+            check(await page.evaluate(()=>document.getElementById('item').getAnimations()[0]===window.__originalEffect),'Existing running animation was restarted');
+            await page.evaluate(()=>window.__originalEffect.finish());await visible(page);
+        });
+        await run('native observer handles separate scoped batches before its next delivery', async ({page,mount}) => {
+            const counter='window.__starts={};document.addEventListener("animationstart",event=>{const id=event.target.id;window.__starts[id]=(window.__starts[id]||0)+1;});';
+            await mount({offscreen:true,before:counter,extraCSS:'#item{--animate-duration:8s}'});
+            await pending(page);await page.locator('#item').scrollIntoViewIfNeeded();
+            await page.waitForFunction(()=>document.getElementById('item').dataset.stWpReveal==='running');
+            const initial=await page.evaluate(()=>{
+                const wrapper=document.getElementById('wrap-item');window.__originalEffect=document.getElementById('item').getAnimations()[0];
+                for(const id of ['batch-first','batch-second','batch-third']){
+                    const child=document.createElement('div');child.id=id;child.className='animate__animated';child.dataset.animateClass='animate__fadeIn';child.textContent=id;wrapper.append(child);
+                    window.stWpReveal.init(child,{beforePaint:true});
+                }
+                window.stWpReveal.init(wrapper,{beforePaint:true});
+                return ['batch-first','batch-second','batch-third'].map(id=>document.getElementById(id).dataset.stWpReveal);
+            });
+            check(initial.every(state=>state==='pending'),'Scoped batches started before a current native observation');
+            for(const id of ['batch-first','batch-second','batch-third'])await visible(page,id);
+            check(await page.evaluate(()=>['batch-first','batch-second','batch-third'].every(id=>window.__starts[id]===1)),'Separate batches did not reveal exactly once');
+            check(await page.evaluate(()=>document.getElementById('item').getAnimations()[0]===window.__originalEffect),'Scoped batches restarted the existing animation');
+            await page.evaluate(()=>window.__originalEffect.finish());await visible(page);
+        });
+        await run('native observer does not revive a destroyed batch before delivery', async ({page,mount}) => {
+            const counter='window.__starts={};document.addEventListener("animationstart",event=>{const id=event.target.id;window.__starts[id]=(window.__starts[id]||0)+1;});';
+            await mount({offscreen:true,before:counter,extraCSS:'#item{--animate-duration:8s}'});
+            await pending(page);await page.locator('#item').scrollIntoViewIfNeeded();
+            await page.waitForFunction(()=>document.getElementById('item').dataset.stWpReveal==='running');
+            const initial=await page.evaluate(()=>{
+                const wrapper=document.getElementById('wrap-item');window.__originalEffect=document.getElementById('item').getAnimations()[0];
+                for(const id of ['destroyed-first','retained-second']){
+                    const child=document.createElement('div');child.id=id;child.className='animate__animated';child.dataset.animateClass='animate__fadeIn';child.textContent=id;wrapper.append(child);
+                }
+                window.stWpReveal.init(wrapper,{beforePaint:true});
+                const destroyed=document.getElementById('destroyed-first');const armed=destroyed.dataset.stWpReveal;
+                window.stWpReveal.destroy(destroyed);
+                window.stWpReveal.init(destroyed,{beforePaint:true});
+                return {armed,destroyed:destroyed.dataset.stWpReveal,retained:document.getElementById('retained-second').dataset.stWpReveal};
+            });
+            check(initial.armed==='pending' && initial.destroyed===undefined && initial.retained==='pending','Scoped destroy affected the wrong enrollment');
+            await visible(page,'destroyed-first');await visible(page,'retained-second');
+            check(await page.evaluate(()=>!window.__starts['destroyed-first'] && window.__starts['retained-second']===1),'Native delivery revived destroyed content or skipped its retained sibling');
+            check(await page.evaluate(()=>document.getElementById('item').getAnimations()[0]===window.__originalEffect),'Scoped destroy interrupted an unrelated running sibling');
+            await page.evaluate(()=>window.__originalEffect.finish());await visible(page);
+        });
         await run('focused controls reveal pending ancestors', async ({page,mount}) => {
             await mount({offscreen:true, before:manualObserver});
             await pending(page);
@@ -368,6 +454,7 @@ try {
             }, {viewport});
         }
     }
+    if (!cases) throw new Error('No browser cases matched the supplied roots/filter.');
     console.log(JSON.stringify({status:'passed',browser:browser.version(),profiles:roots.length,cases,assertions},null,2));
     if(process.env.ST_REVEAL_ARTIFACTS)await fs.writeFile(path.join(process.env.ST_REVEAL_ARTIFACTS,'results.json'),JSON.stringify(results,null,2));
 } finally {
