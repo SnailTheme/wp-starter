@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d189040d27b0d5c1688f1c865bf9047",
+    "content-hash": "c41545831469fa6b3455d4668373fd82",
     "packages": [],
     "packages-dev": [
         {
@@ -734,23 +734,23 @@
         },
         {
             "name": "snailtheme/wp-starter-toolkit",
-            "version": "v1.5.1",
+            "version": "v1.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnailTheme/wp-starter-toolkit.git",
-                "reference": "a196516aaebedef357da4c6fd746e1d787458d6e"
+                "reference": "59e25526422e00d1d67df0446163c1a119c227a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/a196516aaebedef357da4c6fd746e1d787458d6e",
-                "reference": "a196516aaebedef357da4c6fd746e1d787458d6e",
+                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/59e25526422e00d1d67df0446163c1a119c227a0",
+                "reference": "59e25526422e00d1d67df0446163c1a119c227a0",
                 "shasum": ""
             },
             "require": {
                 "composer/semver": "^3.4",
                 "php": ">=8.1",
                 "symfony/console": "^6.4 || ^7.0",
-                "symfony/filesystem": "^6.4 || ^7.0",
+                "symfony/filesystem": "^6.4.50 || ^7.4.23",
                 "symfony/finder": "^6.4 || ^7.0",
                 "symfony/process": "^6.4 || ^7.0"
             },
@@ -765,7 +765,9 @@
             },
             "scripts": {
                 "test:acceptance": [
+                    "@php tests/filesystem-security.php",
                     "@php tests/acceptance.php",
+                    "@php tests/image-helpers.php",
                     "@php tests/bundles.php",
                     "@php tests/schema.php",
                     "@php tests/elementals-harness-safety.php",
@@ -793,10 +795,10 @@
             "description": "Developer toolkit for ST WP Starter core updates, UI profiles, curated blocks, and reusable components.",
             "homepage": "https://www.snailtheme.com/",
             "support": {
-                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.5.1",
+                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.5.4",
                 "issues": "https://github.com/SnailTheme/wp-starter-toolkit/issues"
             },
-            "time": "2026-10-31T16:57:00+00:00"
+            "time": "2026-11-06T11:02:39+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -1048,16 +1050,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v7.4.21",
+            "version": "v7.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "fd0e3462be6d32a0d130e8423e4940a7688162d8"
+                "reference": "53d609da66578dad5a39fe290e8f924ec8f05e93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/fd0e3462be6d32a0d130e8423e4940a7688162d8",
-                "reference": "fd0e3462be6d32a0d130e8423e4940a7688162d8",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/53d609da66578dad5a39fe290e8f924ec8f05e93",
+                "reference": "53d609da66578dad5a39fe290e8f924ec8f05e93",
                 "shasum": ""
             },
             "require": {
@@ -1094,7 +1096,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v7.4.21"
+                "source": "https://github.com/symfony/filesystem/tree/v7.4.23"
             },
             "funding": [
                 {
@@ -1114,7 +1116,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-06T20:05:19+00:00"
+            "time": "2026-11-04T08:27:22+00:00"
         },
         {
             "name": "symfony/finder",
