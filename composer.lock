@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c1104db9674b855ebeb448dbd493db4",
+    "content-hash": "c451ae702c867f7ecaadc29d714f0844",
     "packages": [],
     "packages-dev": [
         {
@@ -734,16 +734,16 @@
         },
         {
             "name": "snailtheme/wp-starter-toolkit",
-            "version": "v1.5.4",
+            "version": "v1.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnailTheme/wp-starter-toolkit.git",
-                "reference": "59e25526422e00d1d67df0446163c1a119c227a0"
+                "reference": "3041ea62c59595724fc93b695a8f23375c7a79db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/59e25526422e00d1d67df0446163c1a119c227a0",
-                "reference": "59e25526422e00d1d67df0446163c1a119c227a0",
+                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/3041ea62c59595724fc93b695a8f23375c7a79db",
+                "reference": "3041ea62c59595724fc93b695a8f23375c7a79db",
                 "shasum": ""
             },
             "require": {
@@ -795,10 +795,10 @@
             "description": "Developer toolkit for ST WP Starter core updates, UI profiles, curated blocks, and reusable components.",
             "homepage": "https://www.snailtheme.com/",
             "support": {
-                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.5.4",
+                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.5.5",
                 "issues": "https://github.com/SnailTheme/wp-starter-toolkit/issues"
             },
-            "time": "2026-11-06T11:02:39+00:00"
+            "time": "2026-11-06T19:43:20+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
