@@ -361,6 +361,7 @@ function browser(options = {}) {
             this.callback = callback;
             this.options = settings;
             this.targets = new Set();
+            this.queued = [];
             observers.push(this);
         }
         observe(target) {
@@ -371,7 +372,7 @@ function browser(options = {}) {
         }
         unobserve(target) { this.targets.delete(target); }
         disconnect() { this.targets.clear(); }
-        takeRecords() { return []; }
+        takeRecords() { return this.queued.splice(0); }
     }
     const matchMedia = query => {
         if (!media.has(query)) {
@@ -1079,6 +1080,160 @@ test('nested entered wrappers enroll new children only with their nearest wrappe
     assert.deepEqual([outer.element.selectedTransitions, original.selectedTransitions], previousStarts);
     for (const child of later) animationEvent(child);
     e.api().init(outer.wrapper, {beforePaint: true});
+    assert.equal(e.targets().size, 0);
+    assert.equal(e.timers.jobs.size, 0);
+});
+
+for (const otherWrapper of [false, true]) {
+    test(`queued intersections belong to existing participants, not later enrollments; otherWrapper=${otherWrapper}`, () => {
+        const e = browser();
+        const original = e.fixture();
+        const neighbor = otherWrapper ? e.fixture() : null;
+        e.boot();
+        const observer = e.observers[0];
+        observer.queued.push({target: original.wrapper, isIntersecting: true});
+        if (neighbor) observer.queued.push({target: neighbor.wrapper, isIntersecting: true});
+        e.position(original.wrapper, 1200);
+        const later = [e.item(original.wrapper), e.item(original.wrapper)];
+        e.api().init(original.wrapper);
+        // Native unobserve does not invalidate entries already queued earlier.
+        observer.callback(observer.takeRecords(), observer);
+        for (const child of later) pending(e, child);
+        running(e, original.element);
+        if (neighbor) running(e, neighbor.element);
+        e.intersect(original.wrapper, false);
+        for (const child of later) pending(e, child);
+        e.intersect(original.wrapper);
+        for (const child of later) running(e, child);
+        for (const child of [original.element, ...later, ...(neighbor ? [neighbor.element] : [])]) animationEvent(child);
+        assert.equal(e.targets().size, 0);
+        assert.equal(e.timers.jobs.size, 0);
+    });
+}
+
+test('settling a queued original does not lose the later enrollment or its observation', () => {
+    const e = browser();
+    const {wrapper, element} = e.fixture();
+    e.boot();
+    const observer = e.observers[0];
+    observer.queued.push({target: wrapper, isIntersecting: true});
+    element.getAnimations = () => [];
+    e.position(wrapper, 1200);
+    const later = e.item(wrapper);
+    e.api().init(later);
+    observer.callback(observer.takeRecords(), observer);
+    settled(e, element);
+    pending(e, later);
+    assert.equal(e.targets().has(wrapper), true);
+    e.intersect(wrapper);
+    running(e, later);
+    animationEvent(later);
+    assert.equal(e.targets().size, 0);
+    assert.equal(e.timers.jobs.size, 0);
+});
+
+for (const neighboringWrapper of [false, true]) {
+    test(`queued delivery snapshots participants before synchronous reentry; neighboringWrapper=${neighboringWrapper}`, () => {
+        const e = browser();
+        const original = e.fixture();
+        const neighbor = neighboringWrapper ? e.fixture() : null;
+        e.boot();
+        const observer = e.observers[0];
+        observer.queued.push({target: original.wrapper, isIntersecting: true});
+        if (neighbor) observer.queued.push({target: neighbor.wrapper, isIntersecting: true});
+        e.position(original.wrapper, 1200);
+        if (neighbor) e.position(neighbor.wrapper, 1200);
+        const later = e.item((neighbor || original).wrapper);
+        const trigger = neighbor ? e.item(original.wrapper) : later;
+        const setAttribute = original.wrapper.setAttribute.bind(original.wrapper);
+        let reentered = false;
+        original.wrapper.setAttribute = (name, value) => {
+            setAttribute(name, value);
+            if (!reentered && name === 'class' && original.wrapper.classList.contains('entered')) {
+                reentered = true;
+                e.api().init(later);
+            }
+        };
+        e.api().init(trigger);
+        assert.equal(reentered, true, 'Synchronous custom-element reaction was exercised');
+        pending(e, later);
+        if (neighbor) pending(e, trigger);
+        e.api().destroy();
+        for (const element of [original.element, later, trigger, ...(neighbor ? [neighbor.element] : [])]) {
+            settled(e, element);
+            assert.equal(element.listenerCount(), 0, 'Destroy removed every animation listener');
+        }
+        assert.equal(e.targets().size, 0);
+        assert.equal(e.timers.jobs.size, 0, 'Reentry must not orphan a record timer');
+        e.timers.tick(31000);
+        assert.equal(later.listenerCount(), 0, 'Expired timers must not leave handlers behind');
+    });
+}
+
+for (const mutation of ['detach', 'reduce', 'focus', 'token', 'style', 'class']) {
+    test(`enrollment revalidates after a synchronous ${mutation} reaction during queue delivery`, () => {
+        const e = browser();
+        const {wrapper, element} = e.fixture();
+        e.boot();
+        const observer = e.observers[0];
+        observer.queued.push({target: wrapper, isIntersecting: true});
+        e.position(wrapper, 1200);
+        const later = e.item(wrapper);
+        const control = mutation === 'focus' ? e.create('control', later) : null;
+        const setAttribute = wrapper.setAttribute.bind(wrapper);
+        let reacted = false;
+        wrapper.setAttribute = (name, value) => {
+            setAttribute(name, value);
+            if (!reacted && name === 'class' && wrapper.classList.contains('entered')) {
+                reacted = true;
+                if (mutation === 'detach') later.remove();
+                else if (mutation === 'reduce') e.changeMedia(REDUCE, true);
+                else if (mutation === 'focus') control.focus();
+                else if (mutation === 'token') later.dataset.animateClass = 'animate__Missing';
+                else if (mutation === 'style') later.animationConfig.missing = true;
+                else later.classList.remove('animate__animated');
+            }
+        };
+        e.api().init(later);
+        assert.equal(reacted, true);
+        settled(e, later);
+        e.api().destroy();
+        settled(e, element);
+        assert.equal(e.targets().size, 0);
+        assert.equal(e.timers.jobs.size, 0);
+        assert.equal(later.listenerCount(), 0);
+    });
+}
+
+test('failed queue inspection leaves old, new and neighboring content readable', () => {
+    const e = browser();
+    const original = e.fixture();
+    const neighbor = e.fixture();
+    e.boot();
+    e.observers[0].takeRecords = () => { throw new Error('Queue inspection failed'); };
+    e.position(original.wrapper, 1200);
+    const later = [e.item(original.wrapper), e.item(original.wrapper)];
+    e.api().init(original.wrapper);
+    for (const child of [original.element, neighbor.element, ...later]) settled(e, child);
+    assert.equal(e.targets().size, 0);
+    assert.equal(e.timers.jobs.size, 0);
+});
+
+test('queued entries for destroyed wrappers cannot revive their participants', () => {
+    const e = browser();
+    const original = e.fixture();
+    e.boot();
+    const observer = e.observers[0];
+    observer.queued.push({target: original.wrapper, isIntersecting: true});
+    e.api().destroy(original.wrapper);
+    const later = e.fixture({onscreen: false});
+    e.api().init(later.wrapper);
+    observer.callback(observer.takeRecords(), observer);
+    settled(e, original.element);
+    pending(e, later.element);
+    e.intersect(later.wrapper);
+    running(e, later.element);
+    animationEvent(later.element);
     assert.equal(e.targets().size, 0);
     assert.equal(e.timers.jobs.size, 0);
 });

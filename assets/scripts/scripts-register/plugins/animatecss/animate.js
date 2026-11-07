@@ -195,25 +195,29 @@
         }
     }
 
+    function handleIntersections(entries) {
+        // Custom-element class reactions can call init() synchronously. Capture
+        // every delivery's participants before any of those reactions can run.
+        const deliveries = entries.filter(entry => entry.isIntersecting).map(entry => ({
+            wrapper: entry.target,
+            elements: [...(wrappers.get(entry.target) || [])]
+        }));
+        for (const {wrapper, elements} of deliveries) {
+            if (!wrappers.has(wrapper)) {
+                continue;
+            }
+            wrapper.classList.add('entered');
+            for (const element of elements) {
+                start(element);
+            }
+        }
+    }
+
     function ensureObserver() {
         if (observer) {
             return observer;
         }
-        observer = new window.IntersectionObserver(entries => {
-            for (const entry of entries) {
-                if (!entry.isIntersecting) {
-                    continue;
-                }
-                const group = wrappers.get(entry.target);
-                if (!group) {
-                    continue;
-                }
-                entry.target.classList.add('entered');
-                for (const element of [...group]) {
-                    start(element);
-                }
-            }
-        }, {threshold: 0, rootMargin: '0px'});
+        observer = new window.IntersectionObserver(handleIntersections, {threshold: 0, rootMargin: '0px'});
         return observer;
     }
 
@@ -231,8 +235,29 @@
             if (element.ownerDocument !== document || completed.has(element) || records.has(element)) {
                 continue;
             }
-            const wrapper = element.closest('.enter-view');
+            let wrapper = element.closest('.enter-view');
             if (!wrapper) {
+                continue;
+            }
+            try {
+                if (observer && !motionDisabled(element) && !refreshedWrappers.has(wrapper)) {
+                    // Deliver old notifications before reading this candidate's
+                    // token, CSS, focus or geometry: custom-element reactions can
+                    // synchronously change any of them or enroll the item itself.
+                    handleIntersections(observer.takeRecords());
+                }
+            } catch {
+                unavailable = true;
+                settleAll();
+                settle(element);
+                continue;
+            }
+            if (element.ownerDocument !== document || completed.has(element) || records.has(element)) {
+                continue;
+            }
+            wrapper = element.closest('.enter-view');
+            if (!wrapper || !element.isConnected || !element.matches('.animate__animated')) {
+                settle(element);
                 continue;
             }
             const token = element.getAttribute('data-animate-class') || '';
@@ -255,6 +280,14 @@
             }
             try {
                 const activeObserver = ensureObserver();
+                if (completed.has(element) || records.has(element)) {
+                    continue;
+                }
+                if (motionDisabled(element) || !element.isConnected || element.ownerDocument !== document
+                    || element.closest('.enter-view') !== wrapper || element.contains(document.activeElement)) {
+                    settle(element);
+                    continue;
+                }
                 const record = {wrapper, token, running: false};
                 records.set(element, record);
                 // An undelivered observation cannot retain content indefinitely.

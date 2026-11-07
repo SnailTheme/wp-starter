@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5fbdfb797a6e32c054661287d07f8ab7",
+    "content-hash": "e38d0b854898f9573ffac30d9c56b5c9",
     "packages": [],
     "packages-dev": [
         {
@@ -734,21 +734,21 @@
         },
         {
             "name": "snailtheme/wp-starter-toolkit",
-            "version": "v1.5.6",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnailTheme/wp-starter-toolkit.git",
-                "reference": "9462b0169412bbb73d3b3cf36397cc99d89887b8"
+                "reference": "b8f3586494179dcfb4b8dead4de1c3cf3acc88de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/9462b0169412bbb73d3b3cf36397cc99d89887b8",
-                "reference": "9462b0169412bbb73d3b3cf36397cc99d89887b8",
+                "url": "https://api.github.com/repos/SnailTheme/wp-starter-toolkit/zipball/b8f3586494179dcfb4b8dead4de1c3cf3acc88de",
+                "reference": "b8f3586494179dcfb4b8dead4de1c3cf3acc88de",
                 "shasum": ""
             },
             "require": {
                 "composer/semver": "^3.4",
-                "php": ">=8.1",
+                "php": ">=8.3",
                 "symfony/console": "^6.4 || ^7.0",
                 "symfony/filesystem": "^6.4.50 || ^7.4.23",
                 "symfony/finder": "^6.4 || ^7.0",
@@ -765,6 +765,7 @@
             },
             "scripts": {
                 "test:acceptance": [
+                    "@php tests/php-support.php",
                     "@php tests/filesystem-security.php",
                     "@php tests/acceptance.php",
                     "@php tests/component-scaffolding.php",
@@ -799,10 +800,10 @@
             "description": "Developer toolkit for ST WP Starter core updates, UI profiles, curated blocks, and reusable components.",
             "homepage": "https://www.snailtheme.com/",
             "support": {
-                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.5.6",
+                "source": "https://github.com/SnailTheme/wp-starter-toolkit/tree/v1.6.0",
                 "issues": "https://github.com/SnailTheme/wp-starter-toolkit/issues"
             },
-            "time": "2026-11-06T20:51:07+00:00"
+            "time": "2026-11-06T23:42:33+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
