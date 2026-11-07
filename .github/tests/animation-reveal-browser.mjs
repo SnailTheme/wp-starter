@@ -28,6 +28,7 @@ window.IntersectionObserver=class {
   observe(target){this.targets.add(target);}
   unobserve(target){this.targets.delete(target);}
   disconnect(){this.targets.clear();}
+  takeRecords(){return [];}
 };
 window.__intersect=()=>{for(const observer of window.__observers){observer.callback([...observer.targets].map(target=>({target,isIntersecting:true})));}};
 `;
@@ -367,6 +368,93 @@ try {
             check(await page.evaluate(()=>!window.__starts['destroyed-first'] && window.__starts['retained-second']===1),'Native delivery revived destroyed content or skipped its retained sibling');
             check(await page.evaluate(()=>document.getElementById('item').getAnimations()[0]===window.__originalEffect),'Scoped destroy interrupted an unrelated running sibling');
             await page.evaluate(()=>window.__originalEffect.finish());await visible(page);
+        });
+        await run('native queued intersections cannot start a later offscreen enrollment', async ({page,mount}) => {
+            const gate = `
+                window.__starts={};window.__inserted=false;
+                document.addEventListener('animationstart',event=>{const id=event.target.id;window.__starts[id]=(window.__starts[id]||0)+1;});
+                const wrapper=document.getElementById('wrap-item');
+                const nativeGate=new IntersectionObserver(entries=>{
+                    if(window.__inserted||!entries.some(entry=>entry.isIntersecting)||!window.stWpReveal)return;
+                    window.__inserted=true;
+                    wrapper.style.transform='translateY(2200px)';
+                    for(const id of ['queued-first','queued-second']){
+                        const child=document.createElement('p');child.id=id;child.className='animate__animated';child.dataset.animateClass='animate__fadeIn';child.textContent=id;wrapper.append(child);
+                    }
+                    window.stWpReveal.init(wrapper);
+                    nativeGate.disconnect();
+                });
+                nativeGate.observe(wrapper);
+            `;
+            await mount({offscreen:true,before:gate,extraCSS:'#item{--animate-duration:8s}'});
+            await pending(page);
+            await page.locator('#item').scrollIntoViewIfNeeded();
+            await page.waitForFunction(()=>window.__inserted);
+            await page.waitForTimeout(180);
+            check(await page.$eval('#queued-first',el=>el.getBoundingClientRect().top>=innerHeight),'Race fixture did not move new content off screen');
+            for(const id of ['queued-first','queued-second'])await pending(page,id);
+            check(await page.evaluate(()=>!window.__starts['queued-first']&&!window.__starts['queued-second']),'Old queued visibility consumed a later child entrance');
+            await page.$eval('#wrap-item',el=>{el.style.transform='';});
+            await page.locator('#queued-first').scrollIntoViewIfNeeded();
+            for(const id of ['queued-first','queued-second'])await visible(page,id);
+            check(await page.evaluate(()=>window.__starts['queued-first']===1&&window.__starts['queued-second']===1&&(window.__starts.item||0)<=1),'Fresh re-entry skipped children or replayed the original');
+            await page.evaluate(()=>window.stWpReveal.destroy());await visible(page);
+        });
+        for (const reaction of ['init','focus','token','style','class']) await run('custom-element queue '+reaction+' reaction preserves state and releases owned resources', async ({page,mount}) => {
+            const reactions = `
+                const reaction=${JSON.stringify(reaction)};
+                window.__reentryArmed=false;window.__reentered=false;window.__revealTimers=new Set();
+                const nativeSet=window.setTimeout.bind(window),nativeClear=window.clearTimeout.bind(window);
+                window.setTimeout=(callback,delay,...args)=>{
+                    let timer;timer=nativeSet(()=>{window.__revealTimers.delete(timer);callback(...args);},delay);
+                    if(delay===30000||delay===10000)window.__revealTimers.add(timer);
+                    return timer;
+                };
+                window.clearTimeout=timer=>{window.__revealTimers.delete(timer);nativeClear(timer);};
+                const listeners=new Map(),nativeAdd=EventTarget.prototype.addEventListener,nativeRemove=EventTarget.prototype.removeEventListener;
+                EventTarget.prototype.addEventListener=function(type,callback,...args){
+                    if(this.id==='reentrant-child'&&['animationend','animationcancel'].includes(type)){
+                        if(!listeners.has(type))listeners.set(type,new Set());listeners.get(type).add(callback);
+                    }
+                    return nativeAdd.call(this,type,callback,...args);
+                };
+                EventTarget.prototype.removeEventListener=function(type,callback,...args){
+                    if(this.id==='reentrant-child')listeners.get(type)?.delete(callback);
+                    return nativeRemove.call(this,type,callback,...args);
+                };
+                window.__revealListeners=()=>[...listeners.values()].reduce((sum,set)=>sum+set.size,0);
+                customElements.define('reveal-reentrant-wrapper',class extends HTMLElement{
+                    static get observedAttributes(){return ['class'];}
+                    attributeChangedCallback(){
+                        if(!window.__reentryArmed||window.__reentered||!this.classList.contains('entered'))return;
+                        window.__reentered=true;
+                        const child=document.getElementById('reentrant-child');
+                        if(reaction==='init')window.stWpReveal.init(child);
+                        else if(reaction==='focus')child.querySelector('button').focus({preventScroll:true});
+                        else if(reaction==='token')child.dataset.animateClass='animate__Missing';
+                        else if(reaction==='style')child.style.animationDuration='0s';
+                        else child.classList.remove('animate__animated');
+                    }
+                });
+            `;
+            await mount({offscreen:true,before:manualObserver+reactions,extraCSS:'reveal-reentrant-wrapper{display:block}',
+                markup:markup().replace('<section ','<reveal-reentrant-wrapper ').replace('</section>','</reveal-reentrant-wrapper>')});
+            await pending(page);
+            await page.evaluate(()=>{
+                const wrapper=document.getElementById('wrap-item'),child=document.createElement('p');
+                child.id='reentrant-child';child.className='animate__animated';child.dataset.animateClass='animate__fadeIn';child.textContent='Later content';
+                const control=document.createElement('button');control.textContent='Focus control';child.append(control);wrapper.append(child);
+                const observer=window.__observers[0];let queued=true;
+                observer.takeRecords=()=>{if(!queued)return [];queued=false;return [{target:wrapper,isIntersecting:true}];};
+                window.__reentryArmed=true;window.stWpReveal.init(child);
+            });
+            check(await page.evaluate(()=>window.__reentered),'The real custom-element reaction did not reenter');
+            if(reaction==='init')await pending(page,'reentrant-child');else await visible(page,'reentrant-child');
+            check(await page.$eval('#reentrant-child',el=>!el.classList.contains('animate__fadeIn')),'Earlier delivery started a reentrant child');
+            if(reaction==='focus')check(await page.$eval('#reentrant-child',el=>el.contains(document.activeElement)),'Focus did not remain in the visible child');
+            await page.evaluate(()=>window.stWpReveal.destroy());
+            await visible(page,'reentrant-child');await visible(page);
+            check(await page.evaluate(()=>window.__revealTimers.size===0&&window.__revealListeners()===0),'Reentrant destroy leaked timers or animation listeners');
         });
         await run('focused controls reveal pending ancestors', async ({page,mount}) => {
             await mount({offscreen:true, before:manualObserver});
